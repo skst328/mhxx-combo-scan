@@ -73,6 +73,8 @@ async function analyze({ file, start = 0, end }: AnalyzeRequest) {
     let lastNotified = 0;
     const shots: FrameShot[] = [];
     let lastProduct: number | undefined;
+    // 画像の書き出しに対応していない環境もある。そのときは一覧を諦めて解析だけ続ける
+    let canCapture = true;
 
     for await (const sample of new VideoSampleSink(track).samples(start, end)) {
       try {
@@ -91,8 +93,12 @@ async function analyze({ file, start = 0, end }: AnalyzeRequest) {
           reading.crafting &&
           (reading.material1 !== undefined || reading.material2 !== undefined);
         if (usable && reading.product !== undefined && reading.product !== lastProduct) {
-          if (shots.length < MAX_SHOTS) {
-            shots.push({ reading, image: await canvas.convertToBlob({ type: "image/png" }) });
+          if (canCapture && shots.length < MAX_SHOTS) {
+            try {
+              shots.push({ reading, image: await canvas.convertToBlob({ type: "image/png" }) });
+            } catch {
+              canCapture = false; // 一度失敗したら以降は試さない
+            }
           }
           lastProduct = reading.product;
         }
