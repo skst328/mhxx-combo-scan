@@ -317,6 +317,7 @@ function App() {
             frames={result.analyze.frames}
             elapsedMs={result.analyze.elapsedMs}
             reachedCap={result.analyze.reachedCap}
+            timing={result.analyze.timing}
           />
           {result.analyze.analysis.crafts.length === 0 ? (
             <FrameGallery

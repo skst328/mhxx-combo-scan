@@ -1,7 +1,7 @@
 import init, { type Analysis } from "../../combo-core/pkg/combo_core.js";
-import type { AnalyzeRequest, AnalyzeResponse, FrameShot } from "@/workers/analyze.worker";
+import type { AnalyzeRequest, AnalyzeResponse, FrameShot, Timing } from "@/workers/analyze.worker";
 
-export type { FrameShot } from "@/workers/analyze.worker";
+export type { FrameShot, Timing } from "@/workers/analyze.worker";
 
 export type Progress = {
   /** 読み終えたコマ数 */
@@ -23,6 +23,8 @@ export type AnalyzeResult = {
   shots: FrameShot[];
   /** 調合が見つからなかったとき用。実際に切り出した画面 */
   probes: FrameShot[];
+  /** 1 コマの処理の内訳 */
+  timing: Timing;
 };
 
 let wasmReady: Promise<void> | null = null;

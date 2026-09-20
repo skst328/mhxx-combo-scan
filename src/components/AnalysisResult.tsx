@@ -1,5 +1,6 @@
 import { cn } from "cn";
 import type { Analysis, Resolution } from "../../combo-core/pkg/combo_core.js";
+import type { Timing } from "@/lib/analyze";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 /** 割り振りの結果を「3」「2 2」「[2+4|3+3|4+2]」のように表す */
@@ -38,9 +39,10 @@ type Props = {
   elapsedMs: number;
   /** 完成品が上限に達して打ち切ったか */
   reachedCap: boolean;
+  timing: Timing;
 };
 
-export function AnalysisResult({ analysis, frames, elapsedMs, reachedCap }: Props) {
+export function AnalysisResult({ analysis, frames, elapsedMs, reachedCap, timing }: Props) {
   const total = analysis.crafts.reduce((sum, c) => sum + c.count, 0);
   // 推測が入った回。折りたたみを開く価値があるかの目安にする
   const uncertain = analysis.crafts.filter((c) => isUncertain(c.resolution.type)).length;
@@ -68,6 +70,11 @@ export function AnalysisResult({ analysis, frames, elapsedMs, reachedCap }: Prop
         <CardDescription>{detail}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
+        <p className="text-sm text-muted-foreground">
+          内訳: 描画 {(timing.draw / 1000).toFixed(2)}s ・ 読み戻し{" "}
+          {(timing.read / 1000).toFixed(2)}s ・ 認識 {(timing.recognize / 1000).toFixed(2)}s
+        </p>
+
         <div className="space-y-1">
           <p className="text-sm text-muted-foreground">累計</p>
           <p className="font-mono text-sm break-all">
