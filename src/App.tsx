@@ -318,7 +318,15 @@ function App() {
             elapsedMs={result.analyze.elapsedMs}
             reachedCap={result.analyze.reachedCap}
           />
-          <FrameGallery shots={result.analyze.shots} />
+          {result.analyze.analysis.crafts.length === 0 ? (
+            <FrameGallery
+              shots={result.analyze.probes}
+              title="切り出した画面"
+              description="調合が見つからなかったので、実際に読み取った範囲を出しています"
+            />
+          ) : (
+            <FrameGallery shots={result.analyze.shots} />
+          )}
         </>
       )}
     </main>

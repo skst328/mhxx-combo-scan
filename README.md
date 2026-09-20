@@ -4,7 +4,7 @@ Switch 2 で録画した MHXX の調合動画から、ゲーム内の乱数位�
 
 以下のURLから実行できます。
 
-**公開ページ**: **<https://skst328.github.io/mhxx-combo-scan/>**
+**公開ページ**: ~~<https://skst328.github.io/mhxx-combo-scan/>~~ （検証中）
 
 ## できること
 

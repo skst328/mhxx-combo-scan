@@ -19,8 +19,10 @@ export type AnalyzeResult = {
   /** 完成品が上限に達して打ち切ったか */
   reachedCap: boolean;
   elapsedMs: number;
-  /** 読み取り結果が変わったコマの画像 */
+  /** 完成品の個数が変わったコマの画像 */
   shots: FrameShot[];
+  /** 調合が見つからなかったとき用。実際に切り出した画面 */
+  probes: FrameShot[];
 };
 
 let wasmReady: Promise<void> | null = null;

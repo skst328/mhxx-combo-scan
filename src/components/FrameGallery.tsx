@@ -25,7 +25,13 @@ function ShotImage({ image, alt }: { image: Blob; alt: string }) {
   return <img ref={ref} alt={alt} className="w-full" />;
 }
 
-export function FrameGallery({ shots }: { shots: FrameShot[] }) {
+type Props = {
+  shots: FrameShot[];
+  title?: string;
+  description?: string;
+};
+
+export function FrameGallery({ shots, title, description }: Props) {
   if (shots.length === 0) return null;
 
   const bytes = shots.reduce((sum, s) => sum + s.image.size, 0);
@@ -33,9 +39,9 @@ export function FrameGallery({ shots }: { shots: FrameShot[] }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>読み取ったコマ</CardTitle>
+        <CardTitle>{title ?? "読み取ったコマ"}</CardTitle>
         <CardDescription>
-          完成品の個数が変わったコマだけを並べています（{shots.length} 枚 ・{" "}
+          {description ?? "完成品の個数が変わったコマだけを並べています"}（{shots.length} 枚 ・{" "}
           {(bytes / 1024 / 1024).toFixed(1)} MB）
         </CardDescription>
       </CardHeader>

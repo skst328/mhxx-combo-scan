@@ -22,6 +22,8 @@ export type AnalyzeResponse =
       reachedCap: boolean;
       elapsedMs: number;
       shots: FrameShot[];
+      /** 調合が見つからなかったとき用。実際に切り出した画面 */
+      probes: FrameShot[];
     }
   | { type: "error"; message: string };
 
@@ -33,6 +35,11 @@ const MAX_SHOTS = 200;
 
 /** 完成品の個数が変わったコマ。結果の目視確認に使う */
 export type FrameShot = { reading: FrameReading; image: Blob };
+
+/** 調合が 1 つも見つからなかったときに、何を読んだのか見せるための間隔 (コマ) */
+const PROBE_EVERY = 120;
+/** 同上の枚数 */
+const MAX_PROBES = 3;
 
 const post = (message: AnalyzeResponse) => self.postMessage(message);
 
@@ -73,8 +80,18 @@ async function analyze({ file, start = 0, end }: AnalyzeRequest) {
     let lastNotified = 0;
     const shots: FrameShot[] = [];
     let lastProduct: number | undefined;
+    const probes: FrameShot[] = [];
     // 画像の書き出しに対応していない環境もある。そのときは一覧を諦めて解析だけ続ける
     let canCapture = true;
+
+    const capture = async () => {
+      try {
+        return await canvas.convertToBlob({ type: "image/png" });
+      } catch {
+        canCapture = false; // 一度失敗したら以降は試さない
+        return null;
+      }
+    };
 
     for await (const sample of new VideoSampleSink(track).samples(start, end)) {
       try {
@@ -94,13 +111,16 @@ async function analyze({ file, start = 0, end }: AnalyzeRequest) {
           (reading.material1 !== undefined || reading.material2 !== undefined);
         if (usable && reading.product !== undefined && reading.product !== lastProduct) {
           if (canCapture && shots.length < MAX_SHOTS) {
-            try {
-              shots.push({ reading, image: await canvas.convertToBlob({ type: "image/png" }) });
-            } catch {
-              canCapture = false; // 一度失敗したら以降は試さない
-            }
+            const image = await capture();
+            if (image) shots.push({ reading, image });
           }
           lastProduct = reading.product;
+        }
+
+        // 何も見つからなかったときのために、間隔をあけて数枚だけ控えておく
+        if (canCapture && probes.length < MAX_PROBES && (frames - 1) % PROBE_EVERY === 0) {
+          const image = await capture();
+          if (image) probes.push({ reading, image });
         }
 
         const now = performance.now();
@@ -124,6 +144,7 @@ async function analyze({ file, start = 0, end }: AnalyzeRequest) {
       reachedCap,
       elapsedMs: performance.now() - startedAt,
       shots,
+      probes,
     });
   } finally {
     session?.free();
