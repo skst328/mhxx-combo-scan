@@ -1,0 +1,31 @@
+# 依存とビルド成果物
+node_modules/
+dist/
+*.tsbuildinfo
+
+# ログ
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# 解析の入力に使う動画。大きいので入れない
+*.mp4
+combo-core/movies/
+
+# 読んで理解するために置いてある Python の参照実装。
+# ビルドにもテストにも要らない (combo-core/tools/*.py が動くのに必要)
+combo-core/reference/
+
+# エディタ・OS
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.sw?
+
+# Claude Code のローカル状態・設定
+.claude/
+.mcp.json
