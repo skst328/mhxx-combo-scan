@@ -1,4 +1,4 @@
-import { AlertCircle, AlertTriangle } from "lucide-react";
+import { AlertCircle, AlertTriangle, Info } from "lucide-react";
 import { cn } from "cn";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -15,42 +15,41 @@ type Props = {
 
 export function FrameResult({ outcome, range }: Props) {
   const unreliable = range > safeRange(outcome.patternLength);
+  const description =
+    outcome.hits.length > 0
+      ? outcome.totalHits === 1
+        ? "一意に特定できました"
+        : `${outcome.totalHits.toLocaleString()} 件の候補が見つかりました`
+      : outcome.diagnosis
+        ? null
+        : "この範囲では見つかりませんでした";
 
   return (
     <Card>
       <CardHeader>
         <CardTitle>調合開始時のフレーム位置</CardTitle>
-        <CardDescription>
-          {outcome.hits.length === 0
-            ? outcome.diagnosis
-              ? outcome.diagnosis.drifts.length === 0
-                ? "先頭の 1 回を外して特定できました"
-                : outcome.diagnosis.totalDrift === 0
-                  ? "途中にずれがありますが、打ち消し合っています"
-                  : "途中にずれがあります"
-              : "この範囲では見つかりませんでした"
-            : outcome.totalHits === 1
-              ? "一意に特定できました"
-              : `${outcome.totalHits.toLocaleString()} 件の候補が見つかりました`}
-        </CardDescription>
+        {/* 診断が出るときは、下の Alert が状況を説明するので重ねない */}
+        {description && <CardDescription>{description}</CardDescription>}
       </CardHeader>
       <CardContent className="space-y-3">
         {outcome.hits.length === 0 ? (
           outcome.diagnosis ? (
             <div className="space-y-3">
-              <Alert>
-                <AlertTriangle className="text-primary" />
-                <AlertTitle>
-                  {outcome.diagnosis.leadingSkipped
-                    ? "先頭の 1 回を照合から外しました"
-                    : "調合の途中で乱数がずれています"}
-                </AlertTitle>
-                <AlertDescription>
-                  {outcome.diagnosis.leadingSkipped
-                    ? "調合開始直後の 1 回が乱数と噛み合わなかったので、そこを外して照合しました。残りはすべて一致しているので、補正は要りません。"
-                    : "ゲーム側の挙動なのか数値の読み違いなのかは区別できません。範囲を広げても見つかりません。"}
-                </AlertDescription>
-              </Alert>
+              {outcome.diagnosis.leadingSkipped ? (
+                <Alert>
+                  <Info className="text-primary" />
+                  <AlertTitle>先頭の 1 回を照合から外しました</AlertTitle>
+                  <AlertDescription>
+                    調合開始直後の 1 回が乱数と噛み合わなかったので、そこを外して照合しました。
+                    残りはすべて一致しているので、補正は要りません。
+                  </AlertDescription>
+                </Alert>
+              ) : (
+                <Alert variant="warning">
+                  <AlertTriangle />
+                  <AlertTitle>調合の途中で乱数がずれた可能性があります</AlertTitle>
+                </Alert>
+              )}
 
               <div className="space-y-0.5 rounded-lg border p-3">
                 <p className="text-sm text-muted-foreground">調合開始時のフレーム位置</p>
@@ -95,8 +94,8 @@ export function FrameResult({ outcome, range }: Props) {
             </div>
           ) : (
             <p className="text-sm text-muted-foreground">
-              探索範囲の外にあるか、調合の途中でゲーム側の乱数がずれた可能性があります。
-              範囲を広げても見つからない場合は、撮り直してください
+              調合の途中で乱数がずれた可能性がありますが、位置は割り出せませんでした。
+              撮り直すことをおすすめします
             </p>
           )
         ) : (

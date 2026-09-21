@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { AlertCircle, Loader2, Play, ShieldCheck, X } from "lucide-react";
+import { AlertCircle, FileVideo, Loader2, Play, ShieldCheck } from "lucide-react";
+import { cn } from "cn";
 // ハイフンがアンダースコアになることに注意
 import { Session, type Size } from "../combo-core/pkg/combo_core.js";
 import { AnalysisResult } from "@/components/AnalysisResult";
@@ -10,11 +11,12 @@ import { SearchRangeFields } from "@/components/SearchRangeFields";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { TimeRangeFields } from "@/components/TimeRangeFields";
 import { VideoDropzone } from "@/components/VideoDropzone";
-import { Alert, AlertAction, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { analyzeVideo, loadCore, type AnalyzeResult, type Progress } from "@/lib/analyze";
 import { detectCapabilities, hasFinePointer } from "@/lib/capabilities";
+import { useWindowFileDrop } from "@/lib/drop";
 import {
   DEFAULT_RANGE,
   DEFAULT_START,
@@ -65,11 +67,14 @@ function App() {
   const [phase, setPhase] = useState<Phase | null>(null);
   const [result, setResult] = useState<Result | null>(null);
   const abort = useRef<AbortController | null>(null);
+  const frameCard = useRef<HTMLDivElement>(null);
+  const [justFound, setJustFound] = useState(false);
 
   const [capabilities] = useState(detectCapabilities);
   const [finePointer] = useState(hasFinePointer);
 
   const running = phase !== null;
+  const busy = !source || !capabilities.ready || probing || running;
   const start = parseFrames(startText);
   const range = parseFrames(rangeText);
   const from = parseSeconds(fromText);
@@ -79,6 +84,21 @@ function App() {
     to.ok &&
     (from.value === undefined || to.value === undefined || to.value > from.value);
   const canRun = source !== null && start !== null && range !== null && range > 0 && timeOk;
+
+  // 解析は時間がかかるので、終わる頃には結果が画面の外にあることが多い。
+  // 読み上げの位置も移したいので、スクロールに加えてフォーカスも移す
+  useEffect(() => {
+    if (!result?.search) return;
+    frameCard.current?.scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+      block: "start",
+    });
+    frameCard.current?.focus({ preventScroll: true });
+    // 光らせたままにすると邪魔になるので、目に留まるぶんだけで消す
+    setJustFound(true);
+    const timer = setTimeout(() => setJustFound(false), 1600);
+    return () => clearTimeout(timer);
+  }, [result?.search]);
 
   useEffect(() => {
     loadCore()
@@ -114,6 +134,10 @@ function App() {
     );
     setSelection({ file, info: probed.info, problem: checkSource(probed.info, source) });
   };
+
+  // ページのどこに落としても受け取る。外すとブラウザが動画を開いてページを捨てるので、
+  // 受け口を絞らないほうが安全でもある
+  const draggingFile = useWindowFileDrop(select, busy);
 
   /** 動画の解析と乱数の検索を続けて走らせる */
   const run = async () => {
@@ -202,15 +226,35 @@ function App() {
         </Alert>
       )}
 
+      {draggingFile && (
+        // 飾りなので、ドラッグのイベントを拾わせない
+        <div className="pointer-events-none fixed inset-0 z-50 bg-primary/10 backdrop-blur-[2px]">
+          {/* 破線は画面の縁に沿わせる。中央に箱を置くと「その中に落とせ」に見える */}
+          <div className="absolute inset-3 flex flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-primary bg-background/50 text-center sm:inset-6">
+            <FileVideo className="size-10 text-primary" />
+            <p className="font-medium">ここにドロップ</p>
+            <p className="text-sm text-muted-foreground">画面のどこでも受け取ります</p>
+          </div>
+        </div>
+      )}
+
       <VideoDropzone
         onSelect={select}
-        disabled={!source || !capabilities.ready || probing || running}
+        onReset={reset}
+        selected={
+          selection
+            ? {
+                name: selection.file.name,
+                detail: `${selection.info.width}×${selection.info.height} ・ ${formatDuration(selection.info.duration)} ・ ${formatBytes(selection.file.size)}`,
+              }
+            : undefined
+        }
+        probing={probing}
+        disabled={busy}
         showDropHint={finePointer}
       />
 
       <Guide open={selection === null} />
-
-      {probing && <p className="text-sm text-muted-foreground">動画を確認しています…</p>}
 
       {error && (
         <Alert variant="destructive">
@@ -222,24 +266,12 @@ function App() {
 
       {selection && (
         <Card>
-          <CardHeader>
-            <CardTitle className="truncate">{selection.file.name}</CardTitle>
-            <CardDescription>
-              {selection.info.width}×{selection.info.height} ・{" "}
-              {formatDuration(selection.info.duration)} ・ {formatBytes(selection.file.size)}
-            </CardDescription>
-          </CardHeader>
           <CardContent className="space-y-4">
             {selection.problem ? (
               <Alert variant="destructive">
                 <AlertCircle />
                 <AlertTitle>この動画は解析できません</AlertTitle>
                 <AlertDescription>{selection.problem}</AlertDescription>
-                <AlertAction>
-                  <Button variant="ghost" size="xs" aria-label="選び直す" onClick={reset}>
-                    <X />
-                  </Button>
-                </AlertAction>
               </Alert>
             ) : (
               <>
@@ -300,7 +332,17 @@ function App() {
         </Card>
       )}
 
-      {result?.search && <FrameResult outcome={result.search} range={result.range} />}
+      <div
+        ref={frameCard}
+        tabIndex={-1}
+        className={cn(
+          "scroll-mt-4 rounded-xl outline-none ring-primary/60 ring-offset-2 ring-offset-background",
+          "motion-safe:transition-shadow motion-safe:duration-700",
+          justFound && "ring-2",
+        )}
+      >
+        {result?.search && <FrameResult outcome={result.search} range={result.range} />}
+      </div>
 
       {result?.searchError && (
         <Alert variant="destructive">
