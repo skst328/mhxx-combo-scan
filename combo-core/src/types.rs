@@ -40,7 +40,8 @@ pub struct FrameReading {
     pub material1: Option<u8>,
     pub material2: Option<u8>,
     pub product: Option<u8>,
-    /// 完成品が上限に達した。TS はここでデコードを打ち切る
+    /// 完成品が上限に達した回まで読めた。TS はここでデコードを打ち切る。
+    /// 上限の表示を見ただけでは立たない (調合前から上限のことがある)
     pub done: bool,
 }
 
@@ -124,13 +125,13 @@ impl Analysis {
 #[derive(Tsify, Serialize, Deserialize, Clone, Debug)]
 pub struct Cumulative(pub Vec<Option<u8>>);
 
-/// 乱数が余分に進んだ箇所
+/// 乱数の進み方が想定とずれた箇所
 #[derive(Tsify, Serialize, Deserialize, Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Drift {
     /// 何回目の調合の直前でずれたか (1 始まり)
     pub craft: usize,
-    /// 何ステップ余分に進んだか
-    pub steps: u32,
+    /// 想定より何ステップ多く進んだか。少なければ負
+    pub steps: i32,
 }
 
 /// 通常の検索で見つからなかったときの診断結果
@@ -141,8 +142,10 @@ pub struct Diagnosis {
     pub frame: i64,
     /// ずれが起きた箇所
     pub drifts: Vec<Drift>,
-    /// 総ずれ量。調合終了時点はこのぶんだけ余分に進んでいる
-    pub total_drift: u32,
+    /// ずれの合計。報告値はこのぶんだけ補正が要る。相殺されていれば 0
+    pub total_drift: i32,
+    /// 先頭の 1 回を照合から外した。調合開始直後に捨てる回数が足りなかったときに起きる
+    pub leading_skipped: bool,
 }
 
 /// `Diagnosis | undefined` として TS に渡すための包み

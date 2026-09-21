@@ -19,6 +19,9 @@ combo-core/movies/
 # ビルドにもテストにも要らない (combo-core/tools/*.py が動くのに必要)
 combo-core/reference/
 
+# 動画も入れない
+*.mp4
+
 # エディタ・OS
 .vscode/*
 !.vscode/extensions.json

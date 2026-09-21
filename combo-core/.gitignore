@@ -4,6 +4,6 @@
 # wasm-pack の出力。`wasm-pack build --target web` で作り直す
 /pkg
 
-# 全コマぶんの ROI (36MB)。tools/dump_golden.py --all-frames で作り直す。
-# git に入れるのは tests/fixtures の代表コマだけ
-/tests/golden/frames
+# 作業用。tools/dump_cases.py が置き、record_cases が片付ける
+tests/cases/*/.raw
+tests/cases/*/input.json

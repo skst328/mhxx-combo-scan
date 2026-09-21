@@ -24,11 +24,11 @@ src/workers/search.worker.ts    乱数列の検索
 combo-core/src/
   lib.rs        wasm との境界だけ (Session, FrameSearcher)
   types.rs      TS とやり取りする型。tsify が .d.ts を生成する
-  read.rs       1 コマの読み取り。前後のコマを参照しない
+  read.rs       1 コマの読み取り。上限到達の判定だけ前のコマを見る
   templates.rs  二値化済みの見本 (実体は build.rs が生成)
   cross.rs      素材の減りと完成品の増えの突き合わせ
   rng.rs        xorshift128 と jump
-  search.rs     KMP による逐次検索
+  search.rs     KMP による逐次検索と、ずれの診断
 ```
 
 ## ビルド
@@ -45,62 +45,96 @@ pnpm build
 ```
 
 `combo-core/pkg/` は git 管理外なので、**クローン直後は必ず `wasm-pack build` を先に実行する。**
-`src/App.tsx` がここを直接 import している。
+`src/App.tsx` と 2 つの Worker がここを直接 import している。
 
 Rust を変更したら `wasm-pack build` を再実行する。
 
 ## テスト
-
-Rust の実装は、Python で書かれた基準実装と同じ結果を出さなければならない。
-
-| | |
-|---|---|
-| `combo-core/tools/ref_reader.py` | 読み取りとクロスチェックの基準 |
-| `combo-core/tools/ref_rng.py` | 乱数位置の検索の基準 |
-
-その出力を固定したものが `tests/golden/` と `tests/fixtures/` にあり、`cargo test` は
-これと突き合わせる。Python も動画も要らない。
 
 ```bash
 cd combo-core
 cargo test
 ```
 
-| テスト | 内容 | 使うデータ |
-|---|---|---|
-| 単体 26 件 | `src/*.rs` の `#[cfg(test)]` | なし |
-| `cross_check_matches_reference` | 累計の並びが基準実装と一致するか | `tests/golden/*.json` |
-| `search_matches_reference` | 同じフレーム位置を出すか | 同上 |
-| `read_frame_matches_fixtures` | 代表コマの読み取りが一致するか | `tests/fixtures/` (15 コマ) |
-| `read_frame_matches_all_frames` | 同上を全コマに広げた版 | `tests/golden/frames/` (539 コマ) |
+Python も動画も要らない。検査は 3 層あり、**保証の強さが違う。**
 
-`tests/golden/frames/` は 36MB あるので git 管理外。無い場合 `read_frame_matches_all_frames`
-は何も検査せずに通る。手元で全コマを確かめたいときは `--all-frames` で作り直す。
+| 層 | 何を保証するか |
+|---|---|
+| 単体テスト (`src/*.rs` の `#[cfg(test)]`) | 作った入力に対して正しい答えを出すこと。乱数の性質、仕込んだずれの復元、区間分けの場合分けなど。記録には依存しない |
+| 乱数列との突き合わせ | 生産数の並びが、ゲームの乱数列とただ 1 箇所で一致すること |
+| 録画に対する回帰 (`*_matches_recorded`) | 前と同じ結果を出すこと。それだけ |
 
-速度の計測は `#[ignore]` を付けてあるので、明示しないと走らない。
+2 層目がいちばん強い。生産数 1 個の情報量は 1.5 bit で、差分が 30 個ほどあれば 45 bit。
+10<sup>6</sup> (20 bit) を探して偶然 1 箇所に当たる確率は 2<sup>-25</sup> 程度しかない。
+**画素の読み取りが 1 個でも違えばこの一致は起きない**ので、画像認識から乱数検索まで
+一式の正しさをゲームの乱数列が裏付けていることになる。
+
+ただしこれが効くのは**通常の検索が当たるケースだけ**。乱数がずれている録画は位置が
+一意に決まらないので、3 層目しかかからない。
+
+3 層目の期待値はこの実装自身が出したものなので、**正しさは保証しない。**
+挙動を変えたら期待値を作り直し、**差分を目で見て意図と合っているかを確かめる**必要がある。
+
+### 照合データの持ち方
+
+テストケース 1 本につき 1 ディレクトリ。名前はその録画が覆う場合分けを表す。
+
+```
+tests/cases/drift-1/
+    expected.json   コマごとの読み取り結果・累計・フレーム位置・診断
+    frames/0000.png そのコマの ROI
+```
+
+どのディレクトリが何を覆っているかは `tools/dump_cases.py` の `VIDEOS` に書いてある。
+
+層によって要るものが違う。
+
+- **`read_frame` は画素そのものを受け取る**ので、テストにも本物の画素が要る。
+  それが `frames/*.png`。PNG なのは `templates/*.png` と同じ形式にするため
+  (`build.rs` が PNG をデコードして数字のテンプレートを埋め込んでいる)。
+- **`cross_check` と `Searcher` と `diagnose` は画素を見ない。** 読み取り済みの数値だけで
+  動くので、`expected.json` の `rows` と `cumulative` があれば足りる。
+
+PNG は **3 チャンネルの最大値を取った 1 チャンネル**で持つ。`read_frame` が見ているのが
+その値だけ (`read.rs` の `rgba[i].max(rgba[i+1]).max(rgba[i+2])`) なので、
+色を持っても結果は変わらず容量が 3 倍になる。
+
+残すのは**読み取り結果が前のコマから変わったコマだけ**。読み取りが同じコマを足しても
+通る場合分けは増えないので、それで必要十分になる。1 本あたり 70 枚ほど、2MB 弱。
+
+動画は頭から、完成品が上限に達するまで読む。調合していない区間は読み取り結果が
+同じなので ROI が 1 枚に畳まれ、範囲を絞る必要がない。
+
+### 速度の計測
+
+`#[ignore]` を付けてあるので、名前を指定しないと走らない。
 
 ```bash
-cargo test --release -- --ignored --nocapture   # bench
+cd combo-core
+cargo test --release --test cases -- --ignored bench --nocapture
 ```
 
 ## 照合データを作り直す
 
-ROI を変えたときや動画を足したときだけ必要。`combo-core/movies/` に動画を置き、
-cv2 の入った Python で実行する。
+ROI や解析の挙動を変えたとき、動画を足したときに必要。動画が要る。
+
+動画のデコードに OpenCV が要るので、**切り出しだけ Python が担う。期待値は Rust が出す。**
 
 ```bash
 cd combo-core
-python tools/dump_golden.py               # golden と fixtures
-python tools/dump_golden.py --all-frames  # 全コマの ROI も (36MB)
-python tools/bench.py                     # 基準実装との速度比較
+python tools/dump_cases.py    # 動画 -> 全コマの ROI (作業用の .raw)
+cargo test --release --test cases -- --ignored record_cases --nocapture
 ```
 
-動画を足すときは `tools/dump_golden.py` の `VIDEOS` に
-`(ファイル名, 開始秒, 終了秒)` を追記する。`cargo test` は `tests/golden/*.json` を
-すべて読むので、Rust 側の変更は要らない。
+2 つ目が、読み取り結果が変わったコマだけを `frames/` に残して `.raw` と `input.json` を
+片付け、`expected.json` を書く。`.raw` は 10 倍ほど嵩むので、必ず 2 つ目まで走らせる。
 
-`tools/ref_*.py` は基準そのものなので、**Rust に合わせて書き換えない。**
-両方を同時に変えるとテストが通ってしまう。
+**書いたあとは `git diff` で差分を必ず見る。** 期待値はこの実装自身が出したものなので、
+バグを入れてもテストは通る。差分を見るのが唯一の歯止めになる。
+
+動画を足すときは `tools/dump_cases.py` の `VIDEOS` に `(ディレクトリ名, ファイル名)` を
+追記するだけでよい。`cargo test` は `tests/cases/` 直下のディレクトリをすべて読むので、
+Rust 側の変更は要らない。動画の置き場所は `MOVIE_DIRS` に並べたものを順に探す。
 
 ## アイコン
 
@@ -122,4 +156,4 @@ done
 | 調合パネルの位置は常に同じ | 座標は決め打ち。±1px のズレは吸収する |
 | 成功率 100% の調合 | 失敗は「解析エラー」になる |
 | 素材は 1 回に 1 個ずつ減る | 調合回数の数え方の根拠 |
-| 生産数は 2〜4 個 | 変える場合は `cross.rs` と `ref_reader.py` の両方を直す |
+| 生産数は 2〜4 個 | 変える場合は `cross.rs` の `YIELD_MIN` / `YIELD_MAX` |

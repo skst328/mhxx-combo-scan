@@ -70,7 +70,8 @@ fn splits(total: i32, k: u8) -> Vec<Vec<u8>> {
     out
 }
 
-/// 素材の値が変わるごとに区間を区切る
+/// 素材の値が変わるごとに区間を区切る。
+/// 素材が増えていたら別の調合が始まったとみなし、そこから数え直す
 fn segments(rows: &[FrameReading]) -> Vec<Seg> {
     let mut segs: Vec<Seg> = Vec::new();
     let mut prev_m = None;
@@ -78,9 +79,13 @@ fn segments(rows: &[FrameReading]) -> Vec<Seg> {
         let Some(m) = material_value(r.material1, r.material2, prev_m) else {
             continue;
         };
-        // 素材が増えることはないので読み間違い扱い
+        // 1 回の調合で素材が増えることはない。2 つの表示が揃って増えているなら
+        // 別の調合が始まったとみなして数え直す。揃っていなければ読み間違い扱い
         if prev_m.is_some_and(|p| m > p) {
-            continue;
+            if r.material1 != r.material2 {
+                continue;
+            }
+            segs.clear();
         }
         if segs.last().is_none_or(|s| s.material != m) {
             let carry = segs.last().and_then(|s| s.last_product);
@@ -186,6 +191,47 @@ mod tests {
 
     fn row(t: f64, m: Option<u8>, p: Option<u8>) -> FrameReading {
         FrameReading { t, crafting: true, material1: m, material2: m, product: p, done: false }
+    }
+
+    /// 素材 1・素材 2 が食い違うコマ
+    fn split_row(t: f64, m1: Option<u8>, m2: Option<u8>, p: Option<u8>) -> FrameReading {
+        FrameReading { t, crafting: true, material1: m1, material2: m2, product: p, done: false }
+    }
+
+    /// 調合を始める前に前の調合の結果が映っていても、本番だけを数える
+    #[test]
+    fn a_new_run_restarts_the_count() {
+        let rows = vec![
+            // 前の調合の結果。素材 67・完成品は上限
+            row(0.0, Some(67), Some(99)),
+            FrameReading::not_crafting(0.5),
+            // ここから本番。素材が増えているので別の調合とみなす
+            row(1.0, Some(99), Some(0)),
+            row(1.2, Some(98), Some(0)),
+            row(1.3, Some(98), Some(3)),
+            row(1.4, Some(97), Some(3)),
+            row(1.5, Some(97), Some(7)),
+        ];
+        let a = cross_check(&rows);
+        assert_eq!(a.material_from, Some(99));
+        assert_eq!(a.material_to, Some(97));
+        assert_eq!(a.cumulative, vec![Some(0), Some(3), Some(7)]);
+    }
+
+    /// 表示が揃っていない増え方は、別の調合ではなく読み間違い
+    #[test]
+    fn a_disagreeing_increase_is_still_a_misreading() {
+        let rows = vec![
+            row(0.0, Some(90), Some(10)),
+            row(0.1, Some(89), Some(10)),
+            row(0.2, Some(89), Some(13)),
+            // 素材 1 だけが増えている。ここで数え直したら本番を捨ててしまう
+            split_row(0.3, Some(98), Some(88), Some(13)),
+            row(0.4, Some(88), Some(16)),
+        ];
+        let a = cross_check(&rows);
+        assert_eq!(a.material_from, Some(90));
+        assert_eq!(a.cumulative, vec![Some(10), Some(13), Some(16)]);
     }
 
     #[test]

@@ -1,0 +1,6275 @@
+{
+  "video": "rng-unknown-2.mp4",
+  "roi": {
+    "x": 513,
+    "y": 49,
+    "width": 321,
+    "height": 221
+  },
+  "rows": [
+    {
+      "t": 0.0,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.03329588938714499,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.06659177877428998,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.09988766816143498,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.13318355754857997,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.16647944693572497,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.19977533632286995,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.23307122571001496,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.26636711509715993,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.29966300448430494,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.33295889387144995,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.36625478325859495,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.3995506726457399,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.4328465620328849,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.4661424514200299,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.4994383408071749,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.5327342301943199,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.5660301195814649,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.5993260089686099,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.6326218983557549,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.6659177877428999,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.6992136771300449,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.7325095665171899,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.7658054559043348,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.7991013452914798,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.8323972346786248,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.8656931240657698,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.8989890134529148,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.9322849028400598,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.9655807922272048,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 0.9988766816143498,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.0321725710014948,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.0654684603886397,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.0987643497757849,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.1320602391629297,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.1653561285500749,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.1986520179372198,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.2319479073243647,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.2652437967115098,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.2985396860986547,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.3318355754857998,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.3651314648729447,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.3984273542600898,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.4317232436472347,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.4650191330343798,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.4983150224215247,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.5316109118086696,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.5649068011958147,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.5982026905829596,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.6314985799701047,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.6647944693572496,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.6980903587443947,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.7313862481315396,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.7646821375186847,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.7979780269058296,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.8312739162929745,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.8645698056801197,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.8978656950672645,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.9311615844544097,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.9644574738415546,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 1.9977533632286997,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.0310492526158446,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.0643451420029897,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.0976410313901344,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.1309369207772795,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.1642328101644246,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.1975286995515697,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.2308245889387144,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.2641204783258595,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.2974163677130046,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.3307122571001497,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.3640081464872944,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.3973040358744395,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.4305999252615846,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.4638958146487293,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.4971917040358744,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.5304875934230195,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.5637834828101647,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.5970793721973093,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.6303752615844544,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.6636711509715996,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.6969670403587442,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.7302629297458894,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.7635588191330345,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.7968547085201796,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.8301505979073243,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.8634464872944694,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.8967423766816145,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.9300382660687596,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.9633341554559043,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 2.9966300448430494,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.0299259342301945,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.063221823617339,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.0965177130044843,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.1298136023916294,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.1631094917787745,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.196405381165919,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.2297012705530643,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.2629971599402094,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.296293049327354,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.3295889387144992,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.3628848281016444,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.3961807174887895,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.429476606875934,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.4627724962630793,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.4960683856502244,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.5293642750373695,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.562660164424514,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.5959560538116593,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.6292519431988044,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.662547832585949,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.695843721973094,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.7291396113602393,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.7624355007473844,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.795731390134529,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.829027279521674,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.8623231689088193,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.895619058295964,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.928914947683109,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.9622108370702542,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 3.9955067264573993,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.028802615844544,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.062098505231689,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.095394394618834,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.128690284005979,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.1619861733931245,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.195282062780269,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.228577952167414,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.261873841554559,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.295169730941704,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.328465620328849,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.361761509715994,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.395057399103139,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.4283532884902845,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.461649177877429,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.494945067264574,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.528240956651719,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.561536846038864,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.594832735426009,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.628128624813154,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.6614245142002995,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.694720403587444,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.728016292974589,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.761312182361734,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.794608071748879,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.827903961136024,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.861199850523169,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.894495739910314,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.927791629297459,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.961087518684604,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 4.994383408071749,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.027679297458894,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.060975186846039,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.094271076233184,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.127566965620329,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.1608628550074735,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.194158744394619,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.227454633781764,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.260750523168909,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.294046412556054,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.327342301943199,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.360638191330344,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.3939340807174885,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.427229970104634,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.460525859491779,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.493821748878924,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.527117638266069,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.560413527653214,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.593709417040359,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.627005306427504,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.6603011958146485,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.693597085201794,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.726892974588939,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.760188863976084,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.793484753363229,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.826780642750374,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.860076532137519,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.8933724215246635,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.926668310911809,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.959964200298954,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 5.993260089686099,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.026555979073244,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.059851868460389,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.093147757847534,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.126443647234678,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.1597395366218235,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.193035426008969,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.226331315396114,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.259627204783259,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.292923094170404,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.326218983557549,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.359514872944693,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.392810762331838,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.4261066517189835,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.459402541106129,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.492698430493274,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.525994319880419,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.559290209267564,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.592586098654708,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.625881988041853,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.6591778774289985,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.692473766816144,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.725769656203289,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.759065545590434,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.792361434977579,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.825657324364724,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.858953213751868,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.892249103139013,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.9255449925261585,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.958840881913304,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 6.992136771300449,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.025432660687594,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.058728550074739,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.092024439461883,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.125320328849028,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.1586162182361734,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.191912107623319,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.225207997010464,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.258503886397609,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.291799775784754,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.325095665171898,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.358391554559043,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.391687443946188,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.4249833333333335,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.458279222720479,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.491575112107624,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.524871001494769,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.558166890881913,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.591462780269058,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.624758669656203,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.658054559043348,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.6913504484304935,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.724646337817639,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.757942227204784,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.791238116591928,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.824534005979073,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.857829895366218,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.891125784753363,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.9244216741405085,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.957717563527654,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 7.991013452914799,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.024309342301944,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.057605231689088,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.090901121076234,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.124197010463378,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.157492899850523,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.190788789237669,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.224084678624813,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.257380568011959,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.290676457399103,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.323972346786249,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.357268236173393,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.390564125560537,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.423860014947683,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.457155904334828,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.490451793721974,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.523747683109118,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.557043572496264,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.590339461883408,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.623635351270554,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.656931240657698,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.690227130044843,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.723523019431989,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.756818908819133,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.790114798206279,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.823410687593423,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.856706576980569,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.890002466367713,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.923298355754858,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.956594245142004,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 8.989890134529148,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.023186023916294,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.056481913303438,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.089777802690584,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.123073692077728,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.156369581464872,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.189665470852018,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.222961360239163,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.256257249626309,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.289553139013453,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.322849028400599,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.356144917787743,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.389440807174887,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.422736696562033,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.456032585949178,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.489328475336324,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.522624364723468,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.555920254110614,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.589216143497758,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.622512032884902,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.655807922272048,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.689103811659193,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.722399701046339,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.755695590433483,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.788991479820629,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.822287369207773,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.855583258594917,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.888879147982063,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.922175037369207,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.955470926756353,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 9.988766816143498,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.022062705530644,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.055358594917788,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.088654484304932,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.121950373692078,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.155246263079222,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.188542152466368,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.221838041853513,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.255133931240659,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.288429820627803,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.321725710014947,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.355021599402093,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.388317488789237,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.421613378176383,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.454909267563528,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.488205156950674,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.521501046337818,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.554796935724962,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.588092825112108,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.621388714499252,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.654684603886398,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.687980493273542,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.721276382660688,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.754572272047833,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.787868161434977,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.821164050822123,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.854459940209267,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.887755829596413,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.921051718983557,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.954347608370703,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 10.987643497757848,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.020939387144992,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.054235276532138,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.087531165919282,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.120827055306428,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.154122944693572,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.187418834080718,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.220714723467863,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.254010612855009,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.287306502242153,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.320602391629297,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.353898281016443,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.387194170403587,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.420490059790733,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.453785949177878,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.487081838565024,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.520377727952168,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.553673617339312,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.586969506726458,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.620265396113602,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.653561285500748,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.686857174887892,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.720153064275038,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.753448953662183,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.786744843049327,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.820040732436473,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.853336621823617,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.886632511210763,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.919928400597907,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.953224289985053,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 11.986520179372198,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.019816068759342,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.053111958146488,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.086407847533632,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.119703736920778,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.152999626307922,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.186295515695068,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.219591405082213,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.252887294469357,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.286183183856503,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.319479073243647,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.352774962630793,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.386070852017937,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.419366741405083,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.452662630792227,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.485958520179372,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.519254409566518,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.552550298953662,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.585846188340808,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.619142077727952,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.652437967115098,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.685733856502242,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.719029745889387,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.752325635276533,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.785621524663677,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.818917414050823,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.852213303437967,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.885509192825113,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.918805082212257,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.952100971599402,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 12.985396860986548,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.018692750373692,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.051988639760838,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.085284529147982,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.118580418535128,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.151876307922272,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.185172197309416,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.218468086696562,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.251763976083707,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.285059865470853,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.318355754857997,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.351651644245143,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.384947533632287,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.418243423019431,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.451539312406577,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.484835201793722,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.518131091180868,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.551426980568012,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.584722869955158,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.618018759342302,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.651314648729448,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.684610538116592,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.717906427503737,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.751202316890883,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.784498206278027,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.817794095665173,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.851089985052317,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.884385874439463,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.917681763826607,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.950977653213751,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 13.984273542600897,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.017569431988042,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.050865321375188,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.084161210762332,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.117457100149478,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.150752989536622,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.184048878923766,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.217344768310912,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.250640657698057,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.283936547085203,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.317232436472347,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.350528325859493,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.383824215246637,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.417120104633781,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.450415994020927,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.483711883408072,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.517007772795218,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.550303662182362,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.583599551569508,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.616895440956652,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.650191330343796,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.683487219730942,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.716783109118087,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.750078998505233,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.783374887892377,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.816670777279523,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.849966666666667,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.883262556053811,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.916558445440957,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.949854334828101,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 14.983150224215247,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.016446113602392,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.049742002989538,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.083037892376682,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.116333781763826,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.149629671150972,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.182925560538116,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.216221449925262,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.249517339312407,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.282813228699553,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.316109118086697,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.349405007473841,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.382700896860987,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.415996786248131,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.449292675635277,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.482588565022422,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.515884454409568,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.549180343796712,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.582476233183856,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.615772122571002,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.649068011958146,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.682363901345292,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.715659790732436,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.748955680119582,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.782251569506727,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.815547458893871,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.848843348281017,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.882139237668161,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.915435127055307,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.948731016442451,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 15.982026905829597,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.015322795216743,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.048618684603888,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.081914573991032,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.115210463378176,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.14850635276532,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.181802242152468,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.215098131539612,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.248394020926757,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.2816899103139,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.314985799701045,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.348281689088193,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.381577578475337,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.41487346786248,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.448169357249625,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.481465246636773,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.514761136023917,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.54805702541106,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.581352914798206,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.61464880418535,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.647944693572498,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.681240582959642,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.714536472346786,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.74783236173393,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.781128251121075,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.814424140508223,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.847720029895367,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.88101591928251,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.914311808669655,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.947607698056803,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 16.980903587443947,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.01419947683109,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.047495366218236,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.08079125560538,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.114087144992528,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.147383034379672,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.180678923766816,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.21397481315396,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.24727070254111,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.280566591928253,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.313862481315397,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.34715837070254,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.380454260089685,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.413750149476833,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.447046038863977,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.48034192825112,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.513637817638266,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.54693370702541,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.580229596412558,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.613525485799702,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.646821375186846,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.68011726457399,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.713413153961138,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.746709043348282,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.780004932735427,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.81330082212257,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.846596711509715,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.879892600896863,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.913188490284007,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.94648437967115,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 17.979780269058296,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 18.01307615844544,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 18.046372047832588,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 18.07966793721973,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 18.112963826606876,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 18.14625971599402,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 18.179555605381168,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 18.212851494768312,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 18.246147384155456,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 18.2794432735426,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 18.312739162929745,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 18.346035052316893,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 18.379330941704037,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 18.41262683109118,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 18.445922720478325,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 18.47921860986547,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 18.512514499252617,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 18.54581038863976,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 18.579106278026906,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 18.61240216741405,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 18.645698056801198,
+      "crafting": true,
+      "material1": null,
+      "material2": null,
+      "product": 0
+    },
+    {
+      "t": 18.678993946188342,
+      "crafting": true,
+      "material1": null,
+      "material2": null,
+      "product": 0
+    },
+    {
+      "t": 18.712289835575486,
+      "crafting": true,
+      "material1": null,
+      "material2": null,
+      "product": 0
+    },
+    {
+      "t": 18.74558572496263,
+      "crafting": true,
+      "material1": null,
+      "material2": null,
+      "product": 0
+    },
+    {
+      "t": 18.778881614349775,
+      "crafting": true,
+      "material1": null,
+      "material2": null,
+      "product": 0
+    },
+    {
+      "t": 18.812177503736923,
+      "crafting": true,
+      "material1": null,
+      "material2": null,
+      "product": 0
+    },
+    {
+      "t": 18.845473393124067,
+      "crafting": true,
+      "material1": null,
+      "material2": null,
+      "product": 0
+    },
+    {
+      "t": 18.87876928251121,
+      "crafting": true,
+      "material1": null,
+      "material2": null,
+      "product": 0
+    },
+    {
+      "t": 18.912065171898355,
+      "crafting": true,
+      "material1": null,
+      "material2": null,
+      "product": 0
+    },
+    {
+      "t": 18.9453610612855,
+      "crafting": true,
+      "material1": null,
+      "material2": null,
+      "product": 0
+    },
+    {
+      "t": 18.978656950672647,
+      "crafting": true,
+      "material1": null,
+      "material2": null,
+      "product": 0
+    },
+    {
+      "t": 19.01195284005979,
+      "crafting": true,
+      "material1": null,
+      "material2": null,
+      "product": 0
+    },
+    {
+      "t": 19.045248729446936,
+      "crafting": true,
+      "material1": null,
+      "material2": null,
+      "product": 0
+    },
+    {
+      "t": 19.07854461883408,
+      "crafting": true,
+      "material1": null,
+      "material2": null,
+      "product": 0
+    },
+    {
+      "t": 19.111840508221228,
+      "crafting": true,
+      "material1": null,
+      "material2": null,
+      "product": 0
+    },
+    {
+      "t": 19.145136397608372,
+      "crafting": true,
+      "material1": null,
+      "material2": null,
+      "product": 0
+    },
+    {
+      "t": 19.178432286995516,
+      "crafting": true,
+      "material1": null,
+      "material2": null,
+      "product": 0
+    },
+    {
+      "t": 19.21172817638266,
+      "crafting": true,
+      "material1": null,
+      "material2": null,
+      "product": 0
+    },
+    {
+      "t": 19.245024065769805,
+      "crafting": true,
+      "material1": null,
+      "material2": null,
+      "product": 0
+    },
+    {
+      "t": 19.278319955156952,
+      "crafting": true,
+      "material1": null,
+      "material2": null,
+      "product": 0
+    },
+    {
+      "t": 19.311615844544097,
+      "crafting": true,
+      "material1": null,
+      "material2": null,
+      "product": 0
+    },
+    {
+      "t": 19.34491173393124,
+      "crafting": true,
+      "material1": null,
+      "material2": null,
+      "product": 0
+    },
+    {
+      "t": 19.378207623318385,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 19.41150351270553,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 19.444799402092677,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 19.47809529147982,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 19.511391180866966,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 19.54468707025411,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 19.577982959641258,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 19.611278849028402,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 19.644574738415546,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 19.67787062780269,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 19.711166517189834,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 19.744462406576982,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 19.777758295964126,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 19.81105418535127,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 19.844350074738415,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 19.877645964125563,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 19.910941853512707,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 19.94423774289985,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 19.977533632286995,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.01082952167414,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.044125411061287,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.07742130044843,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.110717189835576,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.14401307922272,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.177308968609864,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.210604857997012,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.243900747384156,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.2771966367713,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.310492526158445,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.343788415545593,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.377084304932737,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.41038019431988,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.443676083707025,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.47697197309417,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.510267862481317,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.54356375186846,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.576859641255606,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.61015553064275,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.643451420029894,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.676747309417042,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.710043198804186,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.74333908819133,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.776634977578475,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.809930866965622,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.843226756352767,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.87652264573991,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.909818535127055,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.9431144245142,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 20.976410313901347,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.00970620328849,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.043002092675636,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.07629798206278,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.109593871449924,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.142889760837072,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.176185650224216,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.20948153961136,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.242777428998505,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.276073318385652,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.309369207772797,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.34266509715994,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.375960986547085,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.40925687593423,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.442552765321377,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.47584865470852,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.509144544095665,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.54244043348281,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.575736322869954,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.6090322122571,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.642328101644246,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.67562399103139,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.708919880418534,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.742215769805682,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.775511659192826,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.80880754857997,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.842103437967115,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.87539932735426,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.908695216741407,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.94199110612855,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 21.975286995515695,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.00858288490284,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.041878774289984,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.07517466367713,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.108470553064276,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.14176644245142,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.175062331838564,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.208358221225712,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.241654110612856,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.27495,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.308245889387145,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.34154177877429,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.374837668161437,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.40813355754858,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.441429446935725,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.47472533632287,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.508021225710017,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.54131711509716,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.574613004484306,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.60790889387145,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.641204783258594,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.674500672645742,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.707796562032886,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.74109245142003,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.774388340807175,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.80768423019432,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.840980119581467,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.87427600896861,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.907571898355755,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.9408677877429,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 22.974163677130047,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.00745956651719,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.040755455904335,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.07405134529148,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.107347234678624,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.14064312406577,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.173939013452916,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.20723490284006,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.240530792227204,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.27382668161435,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.307122571001496,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.34041846038864,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.373714349775785,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.40701023916293,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.440306128550077,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.47360201793722,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.506897907324365,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.54019379671151,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.573489686098654,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.6067855754858,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.640081464872946,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.67337735426009,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.706673243647234,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.73996913303438,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.773265022421526,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.80656091180867,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.839856801195815,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.87315269058296,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.906448579970107,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.93974446935725,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 23.973040358744395,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 24.00633624813154,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 24.039632137518684,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 24.07292802690583,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 24.106223916292976,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 24.13951980568012,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 24.172815695067264,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 24.20611158445441,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 24.239407473841556,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 24.2727033632287,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 24.305999252615845,
+      "crafting": true,
+      "material1": 99,
+      "material2": 99,
+      "product": 0
+    },
+    {
+      "t": 24.33929514200299,
+      "crafting": true,
+      "material1": 98,
+      "material2": 98,
+      "product": 0
+    },
+    {
+      "t": 24.372591031390137,
+      "crafting": true,
+      "material1": 98,
+      "material2": 98,
+      "product": 3
+    },
+    {
+      "t": 24.40588692077728,
+      "crafting": true,
+      "material1": 98,
+      "material2": 98,
+      "product": 3
+    },
+    {
+      "t": 24.439182810164425,
+      "crafting": true,
+      "material1": 98,
+      "material2": 98,
+      "product": 3
+    },
+    {
+      "t": 24.47247869955157,
+      "crafting": true,
+      "material1": 98,
+      "material2": 98,
+      "product": 3
+    },
+    {
+      "t": 24.505774588938714,
+      "crafting": true,
+      "material1": 98,
+      "material2": 98,
+      "product": null
+    },
+    {
+      "t": 24.53907047832586,
+      "crafting": true,
+      "material1": 98,
+      "material2": 98,
+      "product": 3
+    },
+    {
+      "t": 24.572366367713006,
+      "crafting": true,
+      "material1": 98,
+      "material2": 98,
+      "product": 3
+    },
+    {
+      "t": 24.60566225710015,
+      "crafting": true,
+      "material1": 98,
+      "material2": 98,
+      "product": 3
+    },
+    {
+      "t": 24.638958146487294,
+      "crafting": true,
+      "material1": 98,
+      "material2": 98,
+      "product": 3
+    },
+    {
+      "t": 24.67225403587444,
+      "crafting": true,
+      "material1": 98,
+      "material2": 98,
+      "product": 3
+    },
+    {
+      "t": 24.705549925261586,
+      "crafting": true,
+      "material1": 98,
+      "material2": 98,
+      "product": 3
+    },
+    {
+      "t": 24.73884581464873,
+      "crafting": true,
+      "material1": 98,
+      "material2": 98,
+      "product": 3
+    },
+    {
+      "t": 24.772141704035874,
+      "crafting": true,
+      "material1": 98,
+      "material2": 98,
+      "product": 3
+    },
+    {
+      "t": 24.80543759342302,
+      "crafting": true,
+      "material1": 98,
+      "material2": 98,
+      "product": 3
+    },
+    {
+      "t": 24.838733482810166,
+      "crafting": true,
+      "material1": 98,
+      "material2": 98,
+      "product": 3
+    },
+    {
+      "t": 24.87202937219731,
+      "crafting": true,
+      "material1": 97,
+      "material2": 97,
+      "product": 3
+    },
+    {
+      "t": 24.905325261584455,
+      "crafting": true,
+      "material1": 97,
+      "material2": 97,
+      "product": 7
+    },
+    {
+      "t": 24.9386211509716,
+      "crafting": true,
+      "material1": 97,
+      "material2": 97,
+      "product": 7
+    },
+    {
+      "t": 24.971917040358743,
+      "crafting": true,
+      "material1": 96,
+      "material2": 96,
+      "product": 7
+    },
+    {
+      "t": 25.00521292974589,
+      "crafting": true,
+      "material1": 96,
+      "material2": 96,
+      "product": 10
+    },
+    {
+      "t": 25.038508819133035,
+      "crafting": true,
+      "material1": 96,
+      "material2": 96,
+      "product": 10
+    },
+    {
+      "t": 25.07180470852018,
+      "crafting": true,
+      "material1": 95,
+      "material2": 95,
+      "product": 10
+    },
+    {
+      "t": 25.105100597907324,
+      "crafting": true,
+      "material1": 95,
+      "material2": 95,
+      "product": 12
+    },
+    {
+      "t": 25.13839648729447,
+      "crafting": true,
+      "material1": 95,
+      "material2": 95,
+      "product": 12
+    },
+    {
+      "t": 25.171692376681616,
+      "crafting": true,
+      "material1": 94,
+      "material2": 94,
+      "product": 12
+    },
+    {
+      "t": 25.20498826606876,
+      "crafting": true,
+      "material1": 94,
+      "material2": 94,
+      "product": 15
+    },
+    {
+      "t": 25.238284155455904,
+      "crafting": true,
+      "material1": 94,
+      "material2": 94,
+      "product": 15
+    },
+    {
+      "t": 25.27158004484305,
+      "crafting": true,
+      "material1": 93,
+      "material2": 93,
+      "product": 15
+    },
+    {
+      "t": 25.304875934230196,
+      "crafting": true,
+      "material1": 93,
+      "material2": 93,
+      "product": 18
+    },
+    {
+      "t": 25.33817182361734,
+      "crafting": true,
+      "material1": 93,
+      "material2": 93,
+      "product": 18
+    },
+    {
+      "t": 25.371467713004485,
+      "crafting": true,
+      "material1": 92,
+      "material2": 92,
+      "product": 18
+    },
+    {
+      "t": 25.40476360239163,
+      "crafting": true,
+      "material1": 92,
+      "material2": 92,
+      "product": 21
+    },
+    {
+      "t": 25.438059491778773,
+      "crafting": true,
+      "material1": 92,
+      "material2": 92,
+      "product": 21
+    },
+    {
+      "t": 25.47135538116592,
+      "crafting": true,
+      "material1": 91,
+      "material2": 91,
+      "product": 21
+    },
+    {
+      "t": 25.504651270553065,
+      "crafting": true,
+      "material1": 91,
+      "material2": 91,
+      "product": 24
+    },
+    {
+      "t": 25.53794715994021,
+      "crafting": true,
+      "material1": 91,
+      "material2": 91,
+      "product": 24
+    },
+    {
+      "t": 25.571243049327354,
+      "crafting": true,
+      "material1": 90,
+      "material2": 90,
+      "product": 24
+    },
+    {
+      "t": 25.6045389387145,
+      "crafting": true,
+      "material1": 90,
+      "material2": 90,
+      "product": 28
+    },
+    {
+      "t": 25.637834828101646,
+      "crafting": true,
+      "material1": 90,
+      "material2": 90,
+      "product": 28
+    },
+    {
+      "t": 25.67113071748879,
+      "crafting": true,
+      "material1": 89,
+      "material2": 89,
+      "product": 28
+    },
+    {
+      "t": 25.704426606875934,
+      "crafting": true,
+      "material1": 89,
+      "material2": 89,
+      "product": 30
+    },
+    {
+      "t": 25.73772249626308,
+      "crafting": true,
+      "material1": 89,
+      "material2": 89,
+      "product": 30
+    },
+    {
+      "t": 25.771018385650226,
+      "crafting": true,
+      "material1": 88,
+      "material2": 88,
+      "product": 30
+    },
+    {
+      "t": 25.80431427503737,
+      "crafting": true,
+      "material1": 88,
+      "material2": 88,
+      "product": 33
+    },
+    {
+      "t": 25.837610164424515,
+      "crafting": true,
+      "material1": 88,
+      "material2": 88,
+      "product": 33
+    },
+    {
+      "t": 25.87090605381166,
+      "crafting": true,
+      "material1": 87,
+      "material2": 87,
+      "product": 33
+    },
+    {
+      "t": 25.904201943198803,
+      "crafting": true,
+      "material1": 87,
+      "material2": 87,
+      "product": 36
+    },
+    {
+      "t": 25.93749783258595,
+      "crafting": true,
+      "material1": 87,
+      "material2": 87,
+      "product": 36
+    },
+    {
+      "t": 25.970793721973095,
+      "crafting": true,
+      "material1": 86,
+      "material2": 86,
+      "product": 36
+    },
+    {
+      "t": 26.00408961136024,
+      "crafting": true,
+      "material1": 86,
+      "material2": 86,
+      "product": 40
+    },
+    {
+      "t": 26.037385500747384,
+      "crafting": true,
+      "material1": 86,
+      "material2": 86,
+      "product": 40
+    },
+    {
+      "t": 26.07068139013453,
+      "crafting": true,
+      "material1": 85,
+      "material2": 85,
+      "product": 40
+    },
+    {
+      "t": 26.103977279521676,
+      "crafting": true,
+      "material1": 85,
+      "material2": 85,
+      "product": 42
+    },
+    {
+      "t": 26.13727316890882,
+      "crafting": true,
+      "material1": 85,
+      "material2": 85,
+      "product": 42
+    },
+    {
+      "t": 26.170569058295964,
+      "crafting": true,
+      "material1": 84,
+      "material2": 84,
+      "product": 42
+    },
+    {
+      "t": 26.20386494768311,
+      "crafting": true,
+      "material1": 84,
+      "material2": 84,
+      "product": 45
+    },
+    {
+      "t": 26.237160837070256,
+      "crafting": true,
+      "material1": 84,
+      "material2": 84,
+      "product": 45
+    },
+    {
+      "t": 26.2704567264574,
+      "crafting": true,
+      "material1": 83,
+      "material2": 83,
+      "product": 45
+    },
+    {
+      "t": 26.303752615844544,
+      "crafting": true,
+      "material1": 83,
+      "material2": 83,
+      "product": 48
+    },
+    {
+      "t": 26.33704850523169,
+      "crafting": true,
+      "material1": 83,
+      "material2": 83,
+      "product": 48
+    },
+    {
+      "t": 26.370344394618833,
+      "crafting": true,
+      "material1": 82,
+      "material2": 82,
+      "product": 48
+    },
+    {
+      "t": 26.40364028400598,
+      "crafting": true,
+      "material1": 82,
+      "material2": 82,
+      "product": 50
+    },
+    {
+      "t": 26.436936173393125,
+      "crafting": true,
+      "material1": 82,
+      "material2": 82,
+      "product": 50
+    },
+    {
+      "t": 26.47023206278027,
+      "crafting": true,
+      "material1": 81,
+      "material2": 81,
+      "product": 50
+    },
+    {
+      "t": 26.503527952167413,
+      "crafting": true,
+      "material1": 81,
+      "material2": 81,
+      "product": 53
+    },
+    {
+      "t": 26.53682384155456,
+      "crafting": true,
+      "material1": 81,
+      "material2": 81,
+      "product": 53
+    },
+    {
+      "t": 26.570119730941705,
+      "crafting": true,
+      "material1": 80,
+      "material2": 80,
+      "product": 53
+    },
+    {
+      "t": 26.60341562032885,
+      "crafting": true,
+      "material1": 80,
+      "material2": 80,
+      "product": 57
+    },
+    {
+      "t": 26.636711509715994,
+      "crafting": true,
+      "material1": 80,
+      "material2": 80,
+      "product": 57
+    },
+    {
+      "t": 26.670007399103138,
+      "crafting": true,
+      "material1": 79,
+      "material2": 79,
+      "product": 57
+    },
+    {
+      "t": 26.703303288490286,
+      "crafting": true,
+      "material1": 79,
+      "material2": 79,
+      "product": 60
+    },
+    {
+      "t": 26.73659917787743,
+      "crafting": true,
+      "material1": 79,
+      "material2": 79,
+      "product": 60
+    },
+    {
+      "t": 26.769895067264574,
+      "crafting": true,
+      "material1": 78,
+      "material2": 78,
+      "product": 60
+    },
+    {
+      "t": 26.80319095665172,
+      "crafting": true,
+      "material1": 78,
+      "material2": 78,
+      "product": 62
+    },
+    {
+      "t": 26.836486846038863,
+      "crafting": true,
+      "material1": 78,
+      "material2": 78,
+      "product": 62
+    },
+    {
+      "t": 26.86978273542601,
+      "crafting": true,
+      "material1": 77,
+      "material2": 77,
+      "product": 62
+    },
+    {
+      "t": 26.903078624813155,
+      "crafting": true,
+      "material1": 77,
+      "material2": 77,
+      "product": 64
+    },
+    {
+      "t": 26.9363745142003,
+      "crafting": true,
+      "material1": 77,
+      "material2": 77,
+      "product": 64
+    },
+    {
+      "t": 26.969670403587443,
+      "crafting": true,
+      "material1": 76,
+      "material2": 76,
+      "product": 64
+    },
+    {
+      "t": 27.00296629297459,
+      "crafting": true,
+      "material1": 76,
+      "material2": 76,
+      "product": 67
+    },
+    {
+      "t": 27.036262182361735,
+      "crafting": true,
+      "material1": 76,
+      "material2": 76,
+      "product": 67
+    },
+    {
+      "t": 27.06955807174888,
+      "crafting": true,
+      "material1": 75,
+      "material2": 75,
+      "product": 67
+    },
+    {
+      "t": 27.102853961136024,
+      "crafting": true,
+      "material1": 75,
+      "material2": 75,
+      "product": 70
+    },
+    {
+      "t": 27.136149850523168,
+      "crafting": true,
+      "material1": 75,
+      "material2": 75,
+      "product": 70
+    },
+    {
+      "t": 27.169445739910316,
+      "crafting": true,
+      "material1": 74,
+      "material2": 74,
+      "product": 70
+    },
+    {
+      "t": 27.20274162929746,
+      "crafting": true,
+      "material1": 74,
+      "material2": 74,
+      "product": 73
+    },
+    {
+      "t": 27.236037518684604,
+      "crafting": true,
+      "material1": 74,
+      "material2": 74,
+      "product": 73
+    },
+    {
+      "t": 27.26933340807175,
+      "crafting": true,
+      "material1": 73,
+      "material2": 73,
+      "product": 73
+    },
+    {
+      "t": 27.302629297458896,
+      "crafting": true,
+      "material1": 73,
+      "material2": 73,
+      "product": 75
+    },
+    {
+      "t": 27.33592518684604,
+      "crafting": true,
+      "material1": 73,
+      "material2": 73,
+      "product": 75
+    },
+    {
+      "t": 27.369221076233185,
+      "crafting": true,
+      "material1": 72,
+      "material2": 72,
+      "product": 75
+    },
+    {
+      "t": 27.40251696562033,
+      "crafting": true,
+      "material1": 72,
+      "material2": 72,
+      "product": 79
+    },
+    {
+      "t": 27.435812855007473,
+      "crafting": true,
+      "material1": 72,
+      "material2": 72,
+      "product": 79
+    },
+    {
+      "t": 27.46910874439462,
+      "crafting": true,
+      "material1": 71,
+      "material2": 71,
+      "product": 79
+    },
+    {
+      "t": 27.502404633781765,
+      "crafting": true,
+      "material1": 71,
+      "material2": 71,
+      "product": 81
+    },
+    {
+      "t": 27.53570052316891,
+      "crafting": true,
+      "material1": 71,
+      "material2": 71,
+      "product": 81
+    },
+    {
+      "t": 27.568996412556054,
+      "crafting": true,
+      "material1": 70,
+      "material2": 70,
+      "product": 81
+    },
+    {
+      "t": 27.602292301943198,
+      "crafting": true,
+      "material1": 70,
+      "material2": 70,
+      "product": 84
+    },
+    {
+      "t": 27.635588191330346,
+      "crafting": true,
+      "material1": 70,
+      "material2": 70,
+      "product": 84
+    },
+    {
+      "t": 27.66888408071749,
+      "crafting": true,
+      "material1": 69,
+      "material2": 69,
+      "product": 84
+    },
+    {
+      "t": 27.702179970104634,
+      "crafting": true,
+      "material1": 69,
+      "material2": 69,
+      "product": 86
+    },
+    {
+      "t": 27.73547585949178,
+      "crafting": true,
+      "material1": 69,
+      "material2": 69,
+      "product": 86
+    },
+    {
+      "t": 27.768771748878926,
+      "crafting": true,
+      "material1": 68,
+      "material2": 68,
+      "product": 86
+    },
+    {
+      "t": 27.80206763826607,
+      "crafting": true,
+      "material1": 68,
+      "material2": 68,
+      "product": 90
+    },
+    {
+      "t": 27.835363527653215,
+      "crafting": true,
+      "material1": 68,
+      "material2": 68,
+      "product": 90
+    },
+    {
+      "t": 27.86865941704036,
+      "crafting": true,
+      "material1": 67,
+      "material2": 67,
+      "product": 90
+    },
+    {
+      "t": 27.901955306427503,
+      "crafting": true,
+      "material1": 67,
+      "material2": 67,
+      "product": 94
+    },
+    {
+      "t": 27.93525119581465,
+      "crafting": true,
+      "material1": 67,
+      "material2": 67,
+      "product": 94
+    },
+    {
+      "t": 27.968547085201795,
+      "crafting": true,
+      "material1": 66,
+      "material2": 66,
+      "product": 94
+    },
+    {
+      "t": 28.00184297458894,
+      "crafting": true,
+      "material1": 66,
+      "material2": 66,
+      "product": 98
+    },
+    {
+      "t": 28.035138863976083,
+      "crafting": true,
+      "material1": 66,
+      "material2": 66,
+      "product": 98
+    },
+    {
+      "t": 28.068434753363228,
+      "crafting": true,
+      "material1": 65,
+      "material2": 65,
+      "product": 98
+    },
+    {
+      "t": 28.101730642750375,
+      "crafting": false,
+      "material1": null,
+      "material2": null,
+      "product": null
+    },
+    {
+      "t": 28.13502653213752,
+      "crafting": true,
+      "material1": 65,
+      "material2": 65,
+      "product": 99
+    }
+  ],
+  "cumulative": [
+    0,
+    3,
+    7,
+    10,
+    12,
+    15,
+    18,
+    21,
+    24,
+    28,
+    30,
+    33,
+    36,
+    40,
+    42,
+    45,
+    48,
+    50,
+    53,
+    57,
+    60,
+    62,
+    64,
+    67,
+    70,
+    73,
+    75,
+    79,
+    81,
+    84,
+    86,
+    90,
+    94,
+    98,
+    99
+  ],
+  "frames": [],
+  "diagnosis": {
+    "frame": 309136,
+    "drifts": [],
+    "totalDrift": 0,
+    "leadingSkipped": true
+  },
+  "saved_frames": [
+    {
+      "index": 0,
+      "png": "0000.png"
+    },
+    {
+      "index": 560,
+      "png": "0560.png"
+    },
+    {
+      "index": 582,
+      "png": "0582.png"
+    },
+    {
+      "index": 731,
+      "png": "0731.png"
+    },
+    {
+      "index": 732,
+      "png": "0732.png"
+    },
+    {
+      "index": 736,
+      "png": "0736.png"
+    },
+    {
+      "index": 737,
+      "png": "0737.png"
+    },
+    {
+      "index": 747,
+      "png": "0747.png"
+    },
+    {
+      "index": 748,
+      "png": "0748.png"
+    },
+    {
+      "index": 750,
+      "png": "0750.png"
+    },
+    {
+      "index": 751,
+      "png": "0751.png"
+    },
+    {
+      "index": 753,
+      "png": "0753.png"
+    },
+    {
+      "index": 754,
+      "png": "0754.png"
+    },
+    {
+      "index": 756,
+      "png": "0756.png"
+    },
+    {
+      "index": 757,
+      "png": "0757.png"
+    },
+    {
+      "index": 759,
+      "png": "0759.png"
+    },
+    {
+      "index": 760,
+      "png": "0760.png"
+    },
+    {
+      "index": 762,
+      "png": "0762.png"
+    },
+    {
+      "index": 763,
+      "png": "0763.png"
+    },
+    {
+      "index": 765,
+      "png": "0765.png"
+    },
+    {
+      "index": 766,
+      "png": "0766.png"
+    },
+    {
+      "index": 768,
+      "png": "0768.png"
+    },
+    {
+      "index": 769,
+      "png": "0769.png"
+    },
+    {
+      "index": 771,
+      "png": "0771.png"
+    },
+    {
+      "index": 772,
+      "png": "0772.png"
+    },
+    {
+      "index": 774,
+      "png": "0774.png"
+    },
+    {
+      "index": 775,
+      "png": "0775.png"
+    },
+    {
+      "index": 777,
+      "png": "0777.png"
+    },
+    {
+      "index": 778,
+      "png": "0778.png"
+    },
+    {
+      "index": 780,
+      "png": "0780.png"
+    },
+    {
+      "index": 781,
+      "png": "0781.png"
+    },
+    {
+      "index": 783,
+      "png": "0783.png"
+    },
+    {
+      "index": 784,
+      "png": "0784.png"
+    },
+    {
+      "index": 786,
+      "png": "0786.png"
+    },
+    {
+      "index": 787,
+      "png": "0787.png"
+    },
+    {
+      "index": 789,
+      "png": "0789.png"
+    },
+    {
+      "index": 790,
+      "png": "0790.png"
+    },
+    {
+      "index": 792,
+      "png": "0792.png"
+    },
+    {
+      "index": 793,
+      "png": "0793.png"
+    },
+    {
+      "index": 795,
+      "png": "0795.png"
+    },
+    {
+      "index": 796,
+      "png": "0796.png"
+    },
+    {
+      "index": 798,
+      "png": "0798.png"
+    },
+    {
+      "index": 799,
+      "png": "0799.png"
+    },
+    {
+      "index": 801,
+      "png": "0801.png"
+    },
+    {
+      "index": 802,
+      "png": "0802.png"
+    },
+    {
+      "index": 804,
+      "png": "0804.png"
+    },
+    {
+      "index": 805,
+      "png": "0805.png"
+    },
+    {
+      "index": 807,
+      "png": "0807.png"
+    },
+    {
+      "index": 808,
+      "png": "0808.png"
+    },
+    {
+      "index": 810,
+      "png": "0810.png"
+    },
+    {
+      "index": 811,
+      "png": "0811.png"
+    },
+    {
+      "index": 813,
+      "png": "0813.png"
+    },
+    {
+      "index": 814,
+      "png": "0814.png"
+    },
+    {
+      "index": 816,
+      "png": "0816.png"
+    },
+    {
+      "index": 817,
+      "png": "0817.png"
+    },
+    {
+      "index": 819,
+      "png": "0819.png"
+    },
+    {
+      "index": 820,
+      "png": "0820.png"
+    },
+    {
+      "index": 822,
+      "png": "0822.png"
+    },
+    {
+      "index": 823,
+      "png": "0823.png"
+    },
+    {
+      "index": 825,
+      "png": "0825.png"
+    },
+    {
+      "index": 826,
+      "png": "0826.png"
+    },
+    {
+      "index": 828,
+      "png": "0828.png"
+    },
+    {
+      "index": 829,
+      "png": "0829.png"
+    },
+    {
+      "index": 831,
+      "png": "0831.png"
+    },
+    {
+      "index": 832,
+      "png": "0832.png"
+    },
+    {
+      "index": 834,
+      "png": "0834.png"
+    },
+    {
+      "index": 835,
+      "png": "0835.png"
+    },
+    {
+      "index": 837,
+      "png": "0837.png"
+    },
+    {
+      "index": 838,
+      "png": "0838.png"
+    },
+    {
+      "index": 840,
+      "png": "0840.png"
+    },
+    {
+      "index": 841,
+      "png": "0841.png"
+    },
+    {
+      "index": 843,
+      "png": "0843.png"
+    },
+    {
+      "index": 844,
+      "png": "0844.png"
+    },
+    {
+      "index": 845,
+      "png": "0845.png"
+    }
+  ]
+}

@@ -6,6 +6,8 @@
 //! ライセンスは [`crate::rng`] の記載を参照 (apmnnn/mhxx-rng, MIT)。
 
 use crate::rng::{ascend, jump};
+use std::collections::BTreeMap;
+
 use crate::types::{Diagnosis, Drift, SearchError};
 
 /// 調合 1 回で乱数が進む数。この間隔で拾った乱数が生産数を決める
@@ -147,113 +149,249 @@ impl Searcher {
 
 // ---------------------------------------------------------------- 診断
 
-/// 位置を定めるのに使う差分の個数。これを下回ると偶然の一致と区別できない
-const PROBE_LEN: usize = 18;
-/// 手がかりとして拾う候補の上限
-const MAX_ANCHORS: usize = 64;
-/// 1 箇所で許すずれ幅
-const MAX_STEP_DRIFT: usize = 20;
-/// 全体で許すずれ幅
-const MAX_TOTAL_DRIFT: usize = 200;
+/// 位置を絞るのに使う窓の長さ。ずれをまたがない区間がこれだけ取れれば位置を拾える
+const WINDOW: usize = 12;
+/// 候補として採るのに必要な、同じ位置を指した窓の数
+const MIN_VOTES: usize = 2;
+/// 拾う一致の総数の上限
+const MAX_ANCHORS: usize = 1 << 18;
+/// 照合にかける候補の上限。票の多い順に採る
+const MAX_CANDIDATES: usize = 256;
+/// 1 箇所で許すずれ幅。観測できたものはすべて ±1 だった
+const MAX_STEP_DRIFT: i64 = 2;
+/// ずれの合計の上限
+const MAX_TOTAL_DRIFT: i64 = 5;
 /// ずれ幅を確定するときに先読みする個数。偶然合っただけの位置を弾く
 const LOOKAHEAD: usize = 3;
 
-/// 差分列の先頭 `PROBE_LEN` 個が現れる乱数位置を集める
-fn find_anchors(probe: &[u8], start_frame: u64, total: u64) -> Vec<u64> {
-    let pi = kmp_prefix(probe);
+/// 生産数は 2〜4 の 3 通りなので、直近 `WINDOW` 個を 3 進数 1 つに畳める
+const SYMBOLS: u32 = 3;
+const CODES: u32 = SYMBOLS.pow(WINDOW as u32);
+/// 最も古い 1 個を落とすための桁
+const DROP: u32 = CODES / SYMBOLS;
+/// 引く表が大きくなりすぎないこと。`WINDOW` を伸ばすとここに引っかかる
+const _: () = assert!(CODES <= 1 << 21);
+
+/// 窓を引くための表。同じ内容の窓が複数あってもよいよう、連結して持つ
+struct WindowTable {
+    /// 3 進コード -> その内容を持つ窓のうち最初のもの。`NONE` なら無し
+    head: Vec<u16>,
+    /// 同じ内容を持つ次の窓
+    next: Vec<u16>,
+}
+
+const NONE: u16 = u16::MAX;
+
+impl WindowTable {
+    fn new(pattern: &[u8]) -> Self {
+        let count = pattern.len() - WINDOW + 1;
+        let mut t = Self { head: vec![NONE; CODES as usize], next: vec![NONE; count] };
+        for k in 0..count {
+            let code = pattern[k..k + WINDOW]
+                .iter()
+                .fold(0u32, |c, &x| c * SYMBOLS + (x - 2) as u32);
+            t.next[k] = t.head[code as usize];
+            t.head[code as usize] = k as u16;
+        }
+        t
+    }
+}
+
+/// 乱数列を 1 回だけ舐めて、窓ごとの一致を集める。
+/// 戻り値は (差分列の先頭が来る乱数位置, 一致した窓)
+fn find_anchors(pattern: &[u8], start_frame: u64, total: u64) -> Vec<(u64, usize)> {
+    let table = WindowTable::new(pattern);
+    let lead = (STRIDE * (WINDOW - 1)) as u64;
+
     let mut state = jump(start_frame);
-    let mut kmp = [0usize; STRIDE];
+    // STRIDE 本ぶんの直近 WINDOW 個。それぞれ WINDOW 個溜まるまでは引かない
+    let mut code = [0u32; STRIDE];
+    let mut filled = [0usize; STRIDE];
     let mut r = 0;
-    let mut anchors = Vec::new();
+    let mut out = Vec::new();
+
     for i in 0..total {
         let x = yield_of(state[3]);
         state = ascend(state);
-        let mut k = kmp[r];
-        while k > 0 && probe[k] != x {
-            k = pi[k - 1];
+        code[r] = (code[r] % DROP) * SYMBOLS + (x - 2) as u32;
+        if filled[r] < WINDOW {
+            filled[r] += 1;
         }
-        if probe[k] == x {
-            k += 1;
-        }
-        if k == probe.len() {
-            anchors.push(start_frame + i - (STRIDE * (probe.len() - 1)) as u64);
-            k = pi[probe.len() - 1];
-            if anchors.len() >= MAX_ANCHORS {
+        if filled[r] == WINDOW {
+            let mut k = table.head[code[r] as usize];
+            while k != NONE {
+                // 窓の先頭は STRIDE * (WINDOW - 1) だけ手前。そこが差分列の k 番目
+                let end = start_frame + i;
+                if let Some(base) = end.checked_sub(lead + (STRIDE * k as usize) as u64) {
+                    out.push((base, k as usize));
+                }
+                k = table.next[k as usize];
+            }
+            if out.len() >= MAX_ANCHORS {
                 break;
             }
         }
-        kmp[r] = k;
         r = (r + 1) % STRIDE;
     }
-    anchors
+    out
 }
 
-/// `anchor` から差分列を順に照合し、途中で余分に進んだぶんを記録する。
+/// `anchor` から差分列を順に照合し、想定とずれたぶんを記録する。
+///
+/// 先頭でいきなりずれる場合は、基準そのものがずれているのと区別が付かないので、
+/// ずれとして数えずに基準を動かす。戻り値の最初の要素はその動かしたぶん。
+///
+/// どのずれ幅でも合わないときは、先頭の 1 個だけ照合から外す。調合開始直後に
+/// 捨てる回数 (3 回) が足りないことがあり、そのぶんは乱数のずれではない。
 /// 最後まで合わせられなければ None
-fn align(pattern: &[u8], anchor: u64) -> Option<(Vec<Drift>, usize)> {
-    let span = STRIDE * (pattern.len() + LOOKAHEAD) + MAX_TOTAL_DRIFT + STRIDE;
+fn align(pattern: &[u8], anchor: u64) -> Option<Fit> {
+    // ずれは負にもなるので、少し手前から乱数を作っておく
+    let back = (MAX_TOTAL_DRIFT + STRIDE as i64) as usize;
+    if anchor < back as u64 {
+        return None;
+    }
+    let span = back + STRIDE * (pattern.len() + LOOKAHEAD) + back;
     let mut ys = Vec::with_capacity(span);
-    let mut s = jump(anchor);
+    let mut s = jump(anchor - back as u64);
     for _ in 0..span {
         ys.push(yield_of(s[3]));
         s = ascend(s);
     }
-    // ずれ幅 d を仮定したとき、i 番目から先読みぶんまで合うか
-    let fits = |i: usize, d: usize| {
+    // i 番目をずれ d で見たときの生産数。ys は anchor - back から始まる
+    let at = |i: usize, d: i64| -> Option<u8> {
+        let idx = back as i64 + (STRIDE * i) as i64 + d;
+        usize::try_from(idx).ok().and_then(|u| ys.get(u).copied())
+    };
+    let fits = |i: usize, d: i64| {
         (0..=LOOKAHEAD)
             .map(|t| i + t)
             .take_while(|&j| j < pattern.len())
-            .all(|j| ys.get(STRIDE * j + d) == Some(&pattern[j]))
+            .all(|j| at(j, d) == Some(pattern[j]))
     };
 
     let mut drift = 0;
+    let mut shift = 0;
     let mut drifts = Vec::new();
+    let mut leading_skipped = false;
     for i in 0..pattern.len() {
-        if ys.get(STRIDE * i + drift) == Some(&pattern[i]) {
-            continue; // そのまま合うので進む
+        if at(i, drift) == Some(pattern[i]) {
+            continue;
         }
-        // 合わないので、ずれ幅を先読みで確かめながら探す。
-        // 先読みはここでしか使わない。毎回使うと、ずれの境界をまたいだときに
+        // 合わないので、ずれ幅を先読みで確かめながら小さいほうから探す。
+        // 先読みはここでしか使わない。毎回使うと、次のずれの手前で
         // どの幅でも合わなくなってしまう
-        let step = (1..=MAX_STEP_DRIFT).find(|&d| fits(i, drift + d))?;
-        // 差分列の i 番目は (i + 4) 回目の調合の生産数
-        drifts.push(Drift { craft: i + 4, steps: step as u32 });
-        drift += step;
-        if drift > MAX_TOTAL_DRIFT {
+        let step = (1..=MAX_STEP_DRIFT)
+            .flat_map(|a| [a, -a])
+            .find(|&d| (drift + d).abs() <= MAX_TOTAL_DRIFT && fits(i, drift + d));
+        let Some(step) = step else {
+            // 先頭だけは、外して残り全部が合うなら外す
+            if i == 0 && (1..pattern.len()).all(|j| at(j, 0) == Some(pattern[j])) {
+                leading_skipped = true;
+                break;
+            }
             return None;
+        };
+        drift += step;
+        if i == 0 {
+            shift = drift;
+        } else {
+            // 差分列の i 番目は (i + 4) 回目の調合の生産数
+            drifts.push(Drift { craft: i + 4, steps: step as i32 });
         }
     }
-    Some((drifts, drift))
+    Some(Fit { shift, drifts, total_drift: drift - shift, leading_skipped })
 }
 
-/// 通常の検索で見つからないとき、前半だけで位置を定めて、
-/// 途中で乱数がどれだけ余分に進んだかを調べる。
-/// 手がかりが足りない、または候補が絞れない場合は `None`
+/// `align` が合わせきった結果
+struct Fit {
+    /// 基準を動かしたぶん
+    shift: i64,
+    drifts: Vec<Drift>,
+    total_drift: i64,
+    leading_skipped: bool,
+}
+
+/// 票を集めた位置。`base` は差分列の先頭が来る乱数位置
+struct Candidate {
+    base: u64,
+    votes: usize,
+    /// `base` を指した窓のうち最も先頭寄りのもの
+    first_k: usize,
+}
+
+/// 窓ごとに探し、「差分の先頭が来るはずの位置」に換算して数える。
+/// ずれの範囲で隣り合う位置は同じ候補とみなし、ずれの無い窓が指したほうを代表にする
+fn candidates(pattern: &[u8], start_frame: u64, total: u64) -> Vec<Candidate> {
+    // 位置 -> (票数, それを指した窓のうち最も先頭寄りのもの)
+    let mut votes: BTreeMap<u64, (usize, usize)> = BTreeMap::new();
+    for (base, k) in find_anchors(pattern, start_frame, total) {
+        let e = votes.entry(base).or_insert((0, usize::MAX));
+        e.0 += 1;
+        e.1 = e.1.min(k);
+    }
+
+    let mut out: Vec<Candidate> = Vec::new();
+    for (base, (n, first_k)) in votes {
+        // 直前の候補とずれの範囲で重なるなら、ずれた見え方として同じ位置にまとめる
+        match out.last_mut() {
+            Some(prev) if base - prev.base <= MAX_TOTAL_DRIFT as u64 => {
+                prev.votes += n;
+                // 先頭に近い窓が指した位置ほど、ずれの入らない基準に近い
+                if first_k < prev.first_k {
+                    prev.base = base;
+                    prev.first_k = first_k;
+                }
+            }
+            _ => out.push(Candidate { base, votes: n, first_k }),
+        }
+    }
+    out.sort_by_key(|c| std::cmp::Reverse(c.votes));
+    out.retain(|c| c.votes >= MIN_VOTES);
+    out.truncate(MAX_CANDIDATES);
+    out
+}
+
+/// 通常の検索で見つからないとき、途中で乱数の進み方がずれた可能性を調べる。
+///
+/// 差分列を重なり合う窓に切って別々に探し、複数の窓が同じ位置を指したものを候補にする。
+/// 早い段階でずれていても、ずれをまたがない窓が 2 つ取れれば位置を絞れる。
+/// 候補が 1 つに決まらなければ `None`
 pub fn diagnose(
     cumulative: &[Option<u8>],
     start_frame: u64,
     total: u64,
 ) -> Result<Option<Diagnosis>, SearchError> {
     let (pattern, raw_len) = pattern_from(cumulative)?;
-    if pattern.len() <= PROBE_LEN {
-        return Ok(None);
+    if pattern.len() <= WINDOW {
+        return Ok(None); // 窓が 1 つしか取れないと投票にならない
     }
 
-    let mut found: Option<Diagnosis> = None;
-    for anchor in find_anchors(&pattern[..PROBE_LEN], start_frame, total) {
-        let Some((drifts, total_drift)) = align(&pattern, anchor) else {
-            continue;
-        };
-        if found.is_some() {
-            return Ok(None); // 候補が複数あるなら決められない
+    // 照合が通ったものを、ずれの少ない順・票の多い順に並べる
+    let mut fitted: Vec<(usize, usize, u64, Fit)> = candidates(&pattern, start_frame, total)
+        .into_iter()
+        .filter_map(|c| {
+            let fit = align(&pattern, c.base)?;
+            let base = c.base.checked_add_signed(fit.shift)?;
+            Some((fit.drifts.len(), c.votes, base, fit))
+        })
+        .collect();
+    fitted.sort_by_key(|(n, votes, ..)| (*n, std::cmp::Reverse(*votes)));
+
+    // 2 番手と決め手が付かないなら答えない
+    if let [(n, votes, ..), (n2, votes2, ..), ..] = fitted.as_slice() {
+        if (n, votes) == (n2, votes2) {
+            return Ok(None);
         }
-        found = Some(Diagnosis {
-            frame: anchor as i64 - (STRIDE * 3) as i64 - 15 + 2 * (raw_len as i64 - 1),
-            drifts,
-            total_drift: total_drift as u32,
-        });
     }
-    Ok(found)
+    let Some((_, _, base, fit)) = fitted.into_iter().next() else {
+        return Ok(None);
+    };
+    Ok(Some(Diagnosis {
+        frame: base as i64 - (STRIDE * 3) as i64 - 15 + 2 * (raw_len as i64 - 1),
+        drifts: fit.drifts,
+        total_drift: fit.total_drift as i32,
+        leading_skipped: fit.leading_skipped,
+    }))
 }
 
 #[cfg(test)]
@@ -382,43 +520,136 @@ mod tests {
         assert_eq!(one.consumed(), chunked.consumed());
     }
 
+    /// `start` から stride 刻みで `count` 回ぶんの生産数を作り、累計の並びに直す。
+    /// `drifts` の (位置, 量) は、その回の直後に乱数が余分に進む (負なら足りない) ことを表す
+    fn with_drifts(start: u64, count: usize, drifts: &[(usize, i64)]) -> Vec<Option<u8>> {
+        let mut s = jump(start);
+        // 先頭 3 つは検索に使われないので適当な差 (3) で埋める
+        let mut values = vec![0u8, 3, 6, 9];
+        for i in 0..count {
+            let v = values.last().unwrap() + yield_of(s[3]);
+            values.push(v);
+            let extra = drifts.iter().find(|(at, _)| *at == i).map_or(0, |(_, d)| *d);
+            for _ in 0..(STRIDE as i64 + extra) {
+                s = ascend(s);
+            }
+        }
+        values.into_iter().map(Some).collect()
+    }
+
+    /// `with_drifts` の (位置, 量) を、診断が返す craft 番号に直す。
+    /// ずれが効き始めるのは次の回から
+    fn craft_of(at: usize) -> usize {
+        at + 1 + 4
+    }
+
+    /// 診断が答えるべき値。ずれを足し戻したものが、ずれの無い並びの報告値と一致する
+    fn corrected(d: &Diagnosis) -> i64 {
+        d.frame + d.total_drift as i64
+    }
+
+    /// `with_drifts` で作った並びの、正しい報告値
+    fn want(start: u64, cumulative: &[Option<u8>]) -> i64 {
+        start as i64 - (STRIDE * 3) as i64 - 15 + 2 * (cumulative.len() as i64 - 1)
+    }
+
     /// 途中で乱数が 1 つ余分に進んだ並びから、その位置とずれ量を割り出せる
     #[test]
     fn diagnose_finds_an_extra_advance() {
-        const START: u64 = 60_000;
-        const BREAK_AT: usize = 22; // 何個目の差分でずれを起こすか
-
-        // START から stride 5 で生産数を拾い、BREAK_AT の手前で 1 つ余分に進める
-        let mut s = jump(START);
-        let mut yields = Vec::new();
-        let mut extra_done = false;
-        for i in 0..30 {
-            yields.push(yield_of(s[3]));
-            if i == BREAK_AT && !extra_done {
-                s = ascend(s);
-                extra_done = true;
-            }
-            for _ in 0..STRIDE {
-                s = ascend(s);
-            }
-        }
-
-        let mut values = vec![0u8, 3, 6, 9];
-        for y in &yields {
-            values.push(values.last().unwrap() + y);
-        }
-        let cumulative: Vec<Option<u8>> = values.iter().map(|&v| Some(v)).collect();
+        let cumulative = with_drifts(60_000, 30, &[(22, 1)]);
 
         // 通常の検索では見つからない
         let mut searcher = Searcher::new(&cumulative, 0).unwrap();
-        assert!(searcher.step(START + 20_000).is_empty(), "ずれた並びが素通りしている");
+        assert!(searcher.step(80_000).is_empty(), "ずれた並びが素通りしている");
 
-        // 診断ならずれの位置と量が出る
-        let d = diagnose(&cumulative, 0, START + 20_000).unwrap().expect("診断できていない");
-        assert_eq!(d.total_drift, 1);
+        let d = diagnose(&cumulative, 0, 80_000).unwrap().expect("診断できていない");
+        assert_eq!(corrected(&d), want(60_000, &cumulative) + 1);
+        assert_eq!(d.drifts.iter().map(|x| x.steps).sum::<i32>(), 1);
+    }
+
+    /// 乱数が 1 つ足りない方向のずれも、同じように割り出せる
+    #[test]
+    fn diagnose_finds_a_missing_advance() {
+        let cumulative = with_drifts(60_000, 30, &[(22, -1)]);
+
+        let mut searcher = Searcher::new(&cumulative, 0).unwrap();
+        assert!(searcher.step(80_000).is_empty(), "ずれた並びが素通りしている");
+
+        let d = diagnose(&cumulative, 0, 80_000).unwrap().expect("診断できていない");
+        assert_eq!(corrected(&d), want(60_000, &cumulative) - 1);
+        assert_eq!(d.drifts.iter().map(|x| x.steps).sum::<i32>(), -1);
+    }
+
+    /// ずれが打ち消し合っていれば、報告値に補正は要らない
+    #[test]
+    fn diagnose_reports_zero_when_drifts_cancel() {
+        let cumulative = with_drifts(60_000, 36, &[(5, -1), (25, 1)]);
+
+        let d = diagnose(&cumulative, 0, 80_000).unwrap().expect("診断できていない");
+        assert_eq!(d.total_drift, 0);
+        assert_eq!(corrected(&d), want(60_000, &cumulative));
+        assert_eq!(d.frame, want(60_000, &cumulative));
+    }
+
+    /// ずれは「何回目で起きたか」までは一意に決まらないが、位置と合計は決まる。
+    /// ずれの直後の生産数がたまたま一致すると、検出はその先にずれ込む
+    #[test]
+    fn diagnose_pins_the_total_even_when_the_spot_slips() {
+        let cumulative = with_drifts(60_000, 30, &[(22, -1)]);
+        let d = diagnose(&cumulative, 0, 80_000).unwrap().expect("診断できていない");
+
         assert_eq!(d.drifts.len(), 1);
-        assert_eq!(d.drifts[0].steps, 1);
-        assert_eq!(d.drifts[0].craft, BREAK_AT + 1 + 4);
+        assert!(
+            (craft_of(22)..=craft_of(22) + LOOKAHEAD).contains(&d.drifts[0].craft),
+            "craft = {}",
+            d.drifts[0].craft
+        );
+    }
+
+    /// ずれが真ん中にあって、前後のどちらも窓より少し長いだけの並びでも位置を拾える。
+    /// 窓を長くすると、どちらの窓も取れずに取りこぼす
+    #[test]
+    fn diagnose_finds_a_drift_that_splits_the_sequence() {
+        // 差分は 30 個。ずれの前が 15 個、後ろが 15 個に割れる
+        let cumulative = with_drifts(60_000, 31, &[(14, 1)]);
+
+        let d = diagnose(&cumulative, 0, 80_000).unwrap().expect("診断できていない");
+        assert_eq!(corrected(&d), want(60_000, &cumulative) + 1);
+        assert_eq!(d.drifts.iter().map(|x| x.steps).sum::<i32>(), 1);
+    }
+
+    /// 先頭の 1 個だけが合わないときは、それを外して残りで位置を決める。
+    /// 調合開始直後に捨てる 3 回では足りないことがある
+    #[test]
+    fn diagnose_drops_a_leading_value_that_does_not_fit() {
+        let mut cumulative = with_drifts(60_000, 30, &[]);
+        // cumulative[3] は差分列の起点。ここだけ動かすと先頭 1 個だけが合わなくなる
+        let next = cumulative[4].unwrap();
+        let first = next - cumulative[3].unwrap();
+        cumulative[3] = Some(next - if first == 2 { 3 } else { 2 });
+
+        let mut searcher = Searcher::new(&cumulative, 0).unwrap();
+        assert!(searcher.step(80_000).is_empty(), "合わない並びが素通りしている");
+
+        let d = diagnose(&cumulative, 0, 80_000).unwrap().expect("診断できていない");
+        assert!(d.leading_skipped);
+        assert!(d.drifts.is_empty());
+        assert_eq!(d.total_drift, 0);
+        assert_eq!(d.frame, want(60_000, &cumulative));
+    }
+
+    /// ずれでは説明できない値が混ざっていたら、位置が分かっていても答えない
+    #[test]
+    fn diagnose_gives_up_on_a_value_that_is_not_a_drift() {
+        let mut cumulative = with_drifts(60_000, 30, &[]);
+        // 1 箇所だけ生産数を別の値にする。以降の累計もまとめてずらす
+        let wrong = cumulative[20].unwrap().wrapping_add(1);
+        let delta = wrong - cumulative[20].unwrap();
+        for v in &mut cumulative[20..] {
+            *v = Some(v.unwrap() + delta);
+        }
+
+        assert_eq!(diagnose(&cumulative, 0, 80_000).unwrap(), None);
     }
 
     /// ずれのない並びなら、診断も通常の検索と同じ位置を返す

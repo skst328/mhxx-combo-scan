@@ -178,13 +178,45 @@ pub fn read_frame(t: f64, rgba: &[u8]) -> Result<FrameReading, String> {
         material1: read_number(rgba, &MAT_SLOTS[0]),
         material2: read_number(rgba, &MAT_SLOTS[1]),
         product,
-        done: product == Some(CAP),
+        // 上限に達したかは 1 コマでは決まらない。[`reached_cap`] で決める
+        done: false,
     })
+}
+
+/// 完成品が上限に達したか。
+///
+/// 上限の表示を見ただけでは決まらない。調合を始める前の画面に前の調合の結果が
+/// 映っていることがあるので、**上限未満を見たあとの上限**だけを到達とみなす。
+/// `seen_below` は同じ動画のあいだ持ち回る
+pub fn reached_cap(product: Option<u8>, seen_below: &mut bool) -> bool {
+    match product {
+        Some(p) if p < CAP => {
+            *seen_below = true;
+            false
+        }
+        Some(_) => *seen_below,
+        None => false,
+    }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    /// 調合前から上限が映っていても到達とはみなさない
+    #[test]
+    fn cap_needs_a_smaller_value_first() {
+        let mut seen = false;
+        // 前の調合の結果が映っている
+        assert!(!reached_cap(Some(CAP), &mut seen));
+        // 調合画面でないコマは何も変えない
+        assert!(!reached_cap(None, &mut seen));
+        assert!(!reached_cap(Some(CAP), &mut seen));
+        // ここから本番
+        assert!(!reached_cap(Some(0), &mut seen));
+        assert!(!reached_cap(Some(98), &mut seen));
+        assert!(reached_cap(Some(CAP), &mut seen));
+    }
 
     /// ROI がすべての枠 (周囲 1px 込み) を含んでいること
     #[test]

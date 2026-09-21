@@ -22,7 +22,7 @@ use tsify::{Ts, Tsify};
 use wasm_bindgen::prelude::*;
 
 pub use cross::cross_check;
-pub use read::{ROI, read_frame};
+pub use read::{ROI, read_frame, reached_cap};
 pub use search::{Searcher, diagnose};
 use types::*;
 
@@ -30,6 +30,8 @@ use types::*;
 #[wasm_bindgen]
 pub struct Session {
     rows: Vec<FrameReading>,
+    /// 上限未満の完成品を見たか。[`read::reached_cap`] に持ち回る
+    seen_below_cap: bool,
 }
 
 impl Default for Session {
@@ -42,7 +44,7 @@ impl Default for Session {
 impl Session {
     #[wasm_bindgen(constructor)]
     pub fn new() -> Self {
-        Self { rows: Vec::new() }
+        Self { rows: Vec::new(), seen_below_cap: false }
     }
 
     /// 受け付けるコマの大きさ。TS はこれと違う動画を弾く
@@ -60,7 +62,8 @@ impl Session {
     /// 戻り値はそのコマだけを見た生の値で、前後のコマによる補正は入っていない
     #[wasm_bindgen(js_name = pushFrame)]
     pub fn push_frame(&mut self, t: f64, rgba: &[u8]) -> Result<Ts<FrameReading>, JsError> {
-        let reading = read::read_frame(t, rgba).map_err(|e| JsError::new(&e))?;
+        let mut reading = read::read_frame(t, rgba).map_err(|e| JsError::new(&e))?;
+        reading.done = read::reached_cap(reading.product, &mut self.seen_below_cap);
         self.rows.push(reading);
         Ok(reading.into_ts()?)
     }
