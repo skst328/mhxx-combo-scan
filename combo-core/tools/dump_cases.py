@@ -12,6 +12,7 @@ PNG は 3 チャンネルの最大値を取った 1 チャンネル。read_frame
 
 使い方:
     python tools/dump_cases.py
+    python tools/dump_cases.py --only uneven-stock-0
     python tools/dump_cases.py --movies path/to/movies
     cargo run --release --example record
 
@@ -36,21 +37,23 @@ MOVIE_DIRS = [
 # src/read.rs の ROI と同じ値。ずれると Rust 側のテストが落ちる
 ROI = (513, 49, 321, 221)
 
-# (出力先のディレクトリ名, ファイル名)。名前はその録画が覆う場合分けを表す
+# 覆っている場合分けごとに 1 本。動画は <名前>.mp4 として MOVIE_DIRS のどれかに置く
 VIDEOS = [
     # 通常。検索が一意に当たる
-    ("clean-0", "20260919015837-01M2TQ71GD0DYYDF1G3APJDD29.mp4"),
-    ("clean-1", "20260920023547-01M2WRAFYJS6BT4GVFA530R49R.mp4"),
+    "clean-0",
+    "clean-1",
     # 途中で乱数が 1 つ余分に進む。通常の検索では当たらず、診断が要る
-    ("drift-0", "20260920023614-01M2WRB82FNSYXQ8XTM4YF57DC.mp4"),
-    ("drift-1", "rng-unknown-0.mp4"),
-    ("drift-2", "rng-unknown-1.mp4"),
-    ("drift-3", "rng-unknown-3.mp4"),
-    ("drift-4", "rng-misdetect-0.mp4"),
+    "drift-0",
+    "drift-1",
+    "drift-2",
+    "drift-3",
+    "drift-4",
     # 調合開始直後に捨てる 3 回では足りない
-    ("lead-skip-0", "rng-unknown-2.mp4"),
+    "lead-skip-0",
     # 前の調合の結果 (完成品が上限) が映ったあとに、別の調合が始まる
-    ("restart-0", "start_misjudge.mp4"),
+    "restart-0",
+    # 2 つの素材の所持数が違う (99 と 46)
+    "uneven-stock-0",
 ]
 
 
@@ -93,16 +96,19 @@ def dump(path, out_dir):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--movies", help="動画の置き場所")
+    ap.add_argument("--only", nargs="+", metavar="名前", help="指定したディレクトリ名だけ作り直す")
     args = ap.parse_args()
 
     movies = find_movies(args.movies)
     cases_dir = os.path.join(CRATE, "tests", "cases")
     rx, ry, rw, rh = ROI
 
-    for stem, name in VIDEOS:
-        path = locate(movies, name)
+    for stem in VIDEOS:
+        if args.only and stem not in args.only:
+            continue
+        path = locate(movies, f"{stem}.mp4")
         if path is None:
-            print(f"skip (見つからない): {name}")
+            print(f"skip (見つからない): {stem}.mp4")
             continue
         # 古い PNG が残ると、消したはずのコマを照合し続けてしまう
         out_dir = os.path.join(cases_dir, stem)
@@ -112,7 +118,6 @@ def main():
         frames = dump(path, out_dir)
         with open(os.path.join(out_dir, "input.json"), "w", encoding="utf-8") as f:
             json.dump({
-                "video": name,
                 "roi": {"x": rx, "y": ry, "width": rw, "height": rh},
                 "frames": frames,
             }, f, ensure_ascii=False, indent=1)

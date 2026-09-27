@@ -155,8 +155,10 @@ const WINDOW: usize = 12;
 const MIN_VOTES: usize = 2;
 /// 拾う一致の総数の上限
 const MAX_ANCHORS: usize = 1 << 18;
-/// 照合にかける候補の上限。票の多い順に採る
-const MAX_CANDIDATES: usize = 256;
+/// 照合にかける候補の上限。票の多い順に採る。
+/// ずれが増えると途切れない区間が短くなり、真の候補でも票が最低限しか集まらない。
+/// 照合 1 回は乱数 200 ステップ程度で走査に比べれば誤差なので、広く採る
+const MAX_CANDIDATES: usize = 1 << 16;
 /// 1 箇所で許すずれ幅。観測できたものはすべて ±1 だった
 const MAX_STEP_DRIFT: i64 = 2;
 /// ずれの合計の上限

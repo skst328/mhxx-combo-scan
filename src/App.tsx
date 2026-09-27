@@ -1,5 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import { AlertCircle, FileVideo, Loader2, Play, ShieldCheck } from "lucide-react";
+import {
+  AlertCircle,
+  BookOpen,
+  ExternalLink,
+  FileVideo,
+  Loader2,
+  Play,
+  ShieldCheck,
+} from "lucide-react";
 import { cn } from "cn";
 // ハイフンがアンダースコアになることに注意
 import { Session, type Size } from "../combo-core/pkg/combo_core.js";
@@ -203,6 +211,16 @@ function App() {
           <p className="text-sm text-muted-foreground sm:text-base">
             調合の動画から、ゲーム内の乱数位置を特定します
           </p>
+          <a
+            href="https://github.com/skst328/mhxx-combo-scan#readme"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground"
+          >
+            <BookOpen className="size-4" />
+            詳しい使い方 (GitHub)
+            <ExternalLink className="size-3.5" />
+          </a>
         </div>
         <ThemeToggle />
       </header>
@@ -372,6 +390,7 @@ function App() {
           )}
         </>
       )}
+
     </main>
   );
 }

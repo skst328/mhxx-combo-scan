@@ -52,7 +52,6 @@ struct Saved {
 /// `tools/dump_cases.py` が書くもの
 #[derive(Deserialize)]
 struct Input {
-    video: String,
     roi: RoiDoc,
     frames: Vec<InputFrame>,
 }
@@ -67,7 +66,6 @@ struct InputFrame {
 /// `record_cases` が書くもの
 #[derive(Deserialize, Serialize)]
 struct Expected {
-    video: String,
     roi: RoiDoc,
     rows: Vec<Row>,
     cumulative: Vec<Option<u8>>,
@@ -359,7 +357,6 @@ fn record_cases() {
         );
 
         let expected = Expected {
-            video: input.video,
             roi: input.roi,
             rows,
             cumulative: analysis.cumulative,

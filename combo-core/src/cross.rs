@@ -25,18 +25,53 @@ struct Seg {
     last_product: Option<u8>,
 }
 
-/// 素材 1・素材 2 から素材の値を決める。食い違ったら前の値と辻褄が合う方
-fn material_value(m1: Option<u8>, m2: Option<u8>, prev: Option<u8>) -> Option<u8> {
-    match (m1, m2) {
-        (Some(a), Some(b)) if a != b => {
-            let mut ok = [a, b].into_iter().filter(|&m| prev.is_none_or(|p| m <= p));
-            match (ok.next(), ok.next()) {
-                (Some(only), None) => Some(only),
-                _ => None, // 0 個または 2 個なら決められない
-            }
+/// 素材欄 2 つから所持数を 1 つの値に決める。
+///
+/// 2 つの欄は別の品目なので所持数は違う。どちらも 1 回の調合で 1 個ずつ減るので
+/// **差は変わらない**。差が分かれば、片方が読めなくても、片方を読み違えても補える。
+/// 値は素材 1 の側に揃える
+struct Materials {
+    /// 素材 1 − 素材 2。両方が読めたコマで決まる
+    offset: Option<i32>,
+}
+
+impl Materials {
+    fn new() -> Self {
+        Self { offset: None }
+    }
+
+    /// 調合をやり直すと所持数の組が変わるので、差を取り直す
+    fn restart(&mut self) {
+        self.offset = None;
+    }
+
+    fn value(&mut self, m1: Option<u8>, m2: Option<u8>, prev: Option<u8>) -> Option<u8> {
+        let shifted = |b: u8, d: i32| u8::try_from(b as i32 + d).ok();
+        match (m1, m2) {
+            (Some(a), Some(b)) => match self.offset {
+                // 最初に両方読めたところで差が決まる
+                None => {
+                    self.offset = Some(a as i32 - b as i32);
+                    Some(a)
+                }
+                Some(d) if a as i32 - b as i32 == d => Some(a),
+                // 差が合わない = どちらかの読み違い。前の値と辻褄が合う方を採る
+                Some(d) => {
+                    let mut ok = [Some(a), shifted(b, d)]
+                        .into_iter()
+                        .flatten()
+                        .filter(|&m| prev.is_none_or(|p| m <= p));
+                    match (ok.next(), ok.next()) {
+                        (Some(only), None) => Some(only),
+                        _ => None, // 0 個または 2 個なら決められない
+                    }
+                }
+            },
+            (Some(a), None) => Some(a),
+            // 差が分かっていなければ、素材 2 だけでは素材 1 の側に置き換えられない
+            (None, Some(b)) => self.offset.and_then(|d| shifted(b, d)),
+            (None, None) => None,
         }
-        (Some(a), _) => Some(a),
-        (None, other) => other,
     }
 }
 
@@ -75,17 +110,24 @@ fn splits(total: i32, k: u8) -> Vec<Vec<u8>> {
 fn segments(rows: &[FrameReading]) -> Vec<Seg> {
     let mut segs: Vec<Seg> = Vec::new();
     let mut prev_m = None;
+    // 読み取ったままの値。やり直しの判定に使う
+    let (mut prev1, mut prev2) = (None, None);
+    let mut materials = Materials::new();
     for r in rows.iter().filter(|r| r.crafting) {
-        let Some(m) = material_value(r.material1, r.material2, prev_m) else {
+        // 1 回の調合で素材が増えることはない。2 つの欄が揃って増えているなら
+        // 別の調合が始まったとみなして数え直す。片方だけなら読み間違い
+        if let (Some(a), Some(b)) = (r.material1, r.material2) {
+            if prev1.is_some_and(|p| a > p) && prev2.is_some_and(|p| b > p) {
+                segs.clear();
+                materials.restart();
+                prev_m = None;
+            }
+        }
+        let Some(m) = materials.value(r.material1, r.material2, prev_m) else {
             continue;
         };
-        // 1 回の調合で素材が増えることはない。2 つの表示が揃って増えているなら
-        // 別の調合が始まったとみなして数え直す。揃っていなければ読み間違い扱い
         if prev_m.is_some_and(|p| m > p) {
-            if r.material1 != r.material2 {
-                continue;
-            }
-            segs.clear();
+            continue;
         }
         if segs.last().is_none_or(|s| s.material != m) {
             let carry = segs.last().and_then(|s| s.last_product);
@@ -95,6 +137,8 @@ fn segments(rows: &[FrameReading]) -> Vec<Seg> {
             segs.last_mut().expect("直前に push 済み").last_product = Some(p);
         }
         prev_m = Some(m);
+        prev1 = r.material1.or(prev1);
+        prev2 = r.material2.or(prev2);
     }
     segs
 }
@@ -243,15 +287,43 @@ mod tests {
         assert!(splits(0, 0).is_empty());
     }
 
+    /// 所持数が同じ 2 欄。差 0 を覚えたうえで、食い違いを読み間違いとして捌く
     #[test]
-    fn material_value_prefers_the_one_consistent_with_prev() {
-        assert_eq!(material_value(Some(98), Some(98), Some(99)), Some(98));
+    fn materials_prefer_the_one_consistent_with_prev() {
+        let mut m = Materials::new();
+        assert_eq!(m.value(Some(99), Some(99), None), Some(99));
+        assert_eq!(m.value(Some(98), Some(98), Some(99)), Some(98));
         // 99 は前の値 98 を超えるので 97 を採る
-        assert_eq!(material_value(Some(99), Some(97), Some(98)), Some(97));
+        assert_eq!(m.value(Some(99), Some(97), Some(98)), Some(97));
         // どちらも前の値以下なら決められない
-        assert_eq!(material_value(Some(97), Some(96), Some(98)), None);
-        assert_eq!(material_value(None, Some(50), None), Some(50));
-        assert_eq!(material_value(None, None, None), None);
+        assert_eq!(m.value(Some(97), Some(96), Some(98)), None);
+        // 片方しか読めなくても、差が分かっているので置き換えられる
+        assert_eq!(m.value(None, Some(50), Some(96)), Some(50));
+        assert_eq!(m.value(Some(50), None, Some(50)), Some(50));
+        assert_eq!(m.value(None, None, Some(50)), None);
+    }
+
+    /// 2 つの素材の所持数が違っても数えられる。差は調合では変わらない
+    #[test]
+    fn materials_handle_unequal_stocks() {
+        let mut m = Materials::new();
+        assert_eq!(m.value(Some(99), Some(46), None), Some(99)); // 差 53 を覚える
+        assert_eq!(m.value(Some(98), Some(45), Some(99)), Some(98));
+        // 素材 1 が読めなくても、素材 2 から差で埋められる
+        assert_eq!(m.value(None, Some(44), Some(98)), Some(97));
+        // 素材 2 を大きく読み違えた。差で戻すと前の値を超えるので素材 1 を採る
+        assert_eq!(m.value(Some(96), Some(53), Some(97)), Some(96));
+        // 小さく読み違えた場合はどちらも前の値以下に収まるので決められない
+        assert_eq!(m.value(Some(96), Some(13), Some(97)), None);
+    }
+
+    /// 差が分かる前に素材 2 しか読めないコマは、素材 1 の側に置き換えられない
+    #[test]
+    fn materials_need_both_slots_once() {
+        let mut m = Materials::new();
+        assert_eq!(m.value(None, Some(50), None), None);
+        assert_eq!(m.value(Some(99), Some(50), None), Some(99));
+        assert_eq!(m.value(None, Some(49), Some(99)), Some(98));
     }
 
     /// 完成品の表示は素材より 1 コマ遅れる。区間の最後の値を取ればその区間の結果になる
