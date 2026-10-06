@@ -19,7 +19,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
@@ -30,7 +30,16 @@ jobs:
         working-directory: combo-core
         run: cargo test --release
 
-      - uses: jetli/wasm-pack-action@v0.4.0
+      # アクション経由だと Node 20 依存になるので、公式の配布物を直接取る。
+      # 展開先の ~/.cargo/bin は rust-toolchain が PATH に入れている
+      - name: wasm-pack を入れる
+        env:
+          WASM_PACK: v0.15.0
+        run: |
+          curl -fsSL "https://github.com/wasm-bindgen/wasm-pack/releases/download/$WASM_PACK/wasm-pack-$WASM_PACK-x86_64-unknown-linux-musl.tar.gz" \
+            | tar -xz -C "$HOME/.cargo/bin" --strip-components=1 \
+              "wasm-pack-$WASM_PACK-x86_64-unknown-linux-musl/wasm-pack"
+          wasm-pack --version
 
       # combo-core/pkg は git 管理外なので、フロントのビルドより先に作る
       - name: wasm を作る
@@ -39,10 +48,10 @@ jobs:
 
       # package.json に packageManager を書くと、pnpm 自身が依存として
       # ロックファイルに載って肥大するので、ここで版を指定する
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
         with:
           version: 12.4.2
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: pnpm
@@ -51,7 +60,7 @@ jobs:
       - run: pnpm lint
       - run: pnpm build
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
@@ -63,4 +72,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
