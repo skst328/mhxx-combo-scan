@@ -3,6 +3,11 @@ name: Deploy
 on:
   push:
     branches: [main]
+    # 配信物に影響しない変更では走らせない
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'LICENSE'
   workflow_dispatch:
 
 permissions:
