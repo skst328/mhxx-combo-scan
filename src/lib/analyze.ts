@@ -1,14 +1,14 @@
 import init, { type Analysis } from "../../combo-core/pkg/combo_core.js";
-import type { AnalyzeRequest, AnalyzeResponse, FrameShot, Timing } from "@/workers/analyze.worker";
+import type { AnalyzeRequest, AnalyzeResponse, FrameShot } from "@/workers/analyze.worker";
 
-export type { FrameShot, Timing } from "@/workers/analyze.worker";
+export type { FrameShot } from "@/workers/analyze.worker";
 
 export type Progress = {
   /** 読み終えたコマ数 */
   frames: number;
-  /** 直前のコマの時刻 (秒) */
-  t: number;
-  /** 解析対象の長さ (秒)。進捗率の分母に使う */
+  /** 解析範囲の先頭からの経過 (秒)。進捗率の分子 */
+  elapsed: number;
+  /** 解析範囲の長さ (秒)。進捗率の分母 */
   duration: number;
 };
 
@@ -24,7 +24,6 @@ export type AnalyzeResult = {
   /** 調合が見つからなかったとき用。実際に切り出した画面 */
   probes: FrameShot[];
   /** 1 コマの処理の内訳 */
-  timing: Timing;
 };
 
 let wasmReady: Promise<void> | null = null;

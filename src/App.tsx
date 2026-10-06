@@ -157,7 +157,7 @@ function App() {
 
     try {
       const span = (to.value ?? selection.info.duration) - (from.value ?? 0);
-      setPhase({ kind: "analyze", progress: { frames: 0, t: 0, duration: span } });
+      setPhase({ kind: "analyze", progress: { frames: 0, elapsed: 0, duration: span } });
       const analyzed = await analyzeVideo(selection.file, {
         start: from.value,
         end: to.value,
@@ -200,7 +200,7 @@ function App() {
     phase === null
       ? 0
       : phase.kind === "analyze"
-        ? (phase.progress.t / (phase.progress.duration || 1)) * 100
+        ? (phase.progress.elapsed / (phase.progress.duration || 1)) * 100
         : (phase.progress.consumed / phase.progress.total) * 100;
 
   return (
@@ -377,7 +377,6 @@ function App() {
             frames={result.analyze.frames}
             elapsedMs={result.analyze.elapsedMs}
             reachedCap={result.analyze.reachedCap}
-            timing={result.analyze.timing}
           />
           {result.analyze.analysis.crafts.length === 0 ? (
             <FrameGallery
