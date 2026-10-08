@@ -1,4 +1,7 @@
+import { useEffect, useRef, useState } from "react";
+import { Check, Copy } from "lucide-react";
 import { cn } from "cn";
+import { Button } from "@/components/ui/button";
 import type { Analysis, Resolution } from "../../combo-core/pkg/combo_core.js";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -32,6 +35,38 @@ const NOTE: Record<Resolution["type"], string> = {
 const isUncertain = (type: Resolution["type"]) =>
   type === "inferred" || type === "ambiguous" || type === "failed";
 
+/** 押すと文字列を写し取る。結果が画面に残らないので、ボタン自身が短く知らせる */
+function CopyButton({ text }: { text: string }) {
+  const [done, setDone] = useState(false);
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
+  useEffect(() => () => clearTimeout(timer.current), []);
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setDone(true);
+      clearTimeout(timer.current);
+      timer.current = setTimeout(() => setDone(false), 2000);
+    } catch {
+      // 許可されない環境もある。そのときは何も知らせずに諦める
+    }
+  };
+
+  const label = done ? "コピーしました" : "コピー";
+  return (
+    <Button
+      variant="ghost"
+      size="icon-sm"
+      onClick={copy}
+      title={label}
+      aria-label={label}
+    >
+      {done ? <Check className="text-primary" /> : <Copy />}
+    </Button>
+  );
+}
+
 type Props = {
   analysis: Analysis;
   frames: number;
@@ -42,6 +77,9 @@ type Props = {
 
 export function AnalysisResult({ analysis, frames, elapsedMs, reachedCap }: Props) {
   const total = analysis.crafts.reduce((sum, c) => sum + c.count, 0);
+  const cumulative = analysis.cumulative
+    .map((v) => (v === undefined ? "??" : String(v).padStart(2, "0")))
+    .join(" ");
   // 推測が入った回。折りたたみを開く価値があるかの目安にする
   const uncertain = analysis.crafts.filter((c) => isUncertain(c.resolution.type)).length;
   const detail =
@@ -68,13 +106,15 @@ export function AnalysisResult({ analysis, frames, elapsedMs, reachedCap }: Prop
         <CardDescription>{detail}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="space-y-1">
-          <p className="text-sm text-muted-foreground">累計</p>
-          <p className="font-mono text-sm break-all">
-            {analysis.cumulative
-              .map((v) => (v === undefined ? "??" : String(v).padStart(2, "0")))
-              .join(" ")}
-          </p>
+        <div className="rounded-lg border bg-muted/30 px-3 py-2">
+          <div className="flex items-start justify-between gap-2">
+            <p className="text-sm text-muted-foreground">累計</p>
+            {/* 右上の角に寄せる */}
+            <span className="-mt-0.5 -mr-1.5">
+              <CopyButton text={cumulative} />
+            </span>
+          </div>
+          <p className="font-mono text-sm break-all">{cumulative}</p>
         </div>
 
         <details>

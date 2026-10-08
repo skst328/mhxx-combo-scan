@@ -207,7 +207,12 @@ function App() {
     <main className="mx-auto flex min-h-dvh w-full max-w-5xl flex-col gap-6 px-4 py-8">
       <header className="flex items-start justify-between gap-3">
         <div className="space-y-1">
-          <h1>MHXX 調合スキャン</h1>
+          <h1 className="flex items-baseline gap-2">
+            MHXX 調合スキャン
+            <span className="text-base font-normal text-muted-foreground tabular-nums sm:text-lg">
+              v{__APP_VERSION__}
+            </span>
+          </h1>
           <p className="text-sm text-muted-foreground sm:text-base">
             調合の動画から、ゲーム内の乱数位置を特定します
           </p>
