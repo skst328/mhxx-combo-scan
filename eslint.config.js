@@ -6,8 +6,9 @@ import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  // dist はビルド成果物、pkg は wasm-pack の出力、components/ui は shadcn が生成したもの
-  globalIgnores(['dist', 'combo-core/pkg*', 'src/components/ui']),
+  // dist はビルド成果物、pkg は wasm-pack の出力、components/ui は shadcn が生成したもの、
+  // reference は git 管理外の参考資料と実験用
+  globalIgnores(['dist', 'combo-core/pkg*', 'combo-core/reference', 'src/components/ui']),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [

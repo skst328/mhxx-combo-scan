@@ -246,6 +246,81 @@ fn diagnose_matches_recorded() {
     }
 }
 
+/// 間引いた観測から、調合の開始を正しく見つけられる。
+///
+/// 戻り先が本当の開始より手前にあることと、調合していない区間で誤検知しないことを見る
+#[test]
+fn scan_finds_the_start_before_the_first_craft() {
+    for c in load_all() {
+        let e = &c.expected;
+        let rows: Vec<FrameReading> = e.rows.iter().map(Row::as_reading).collect();
+
+        // 本当の開始 = 素材が初めて減ったコマ
+        let mut prev: Option<u8> = None;
+        let mut truth = None;
+        for (i, r) in rows.iter().enumerate() {
+            if let Some(m) = r.material1 {
+                if prev.is_some_and(|p| m < p) {
+                    truth = Some(i);
+                    break;
+                }
+                prev = Some(m);
+            }
+        }
+        let truth = truth.unwrap_or_else(|| panic!("{}: 素材が減る箇所が無い", c.name()));
+
+        let (hit, t) = combo_core::find_craft_start(&rows)
+            .unwrap_or_else(|| panic!("{}: 調合を見つけられなかった", c.name()));
+
+        // 戻り先のコマ番号を時刻から引く
+        let back = rows
+            .iter()
+            .position(|r| r.t >= t)
+            .unwrap_or_else(|| panic!("{}: 戻り先 {t} が見つからない", c.name()));
+
+        assert!(
+            back <= truth,
+            "{}: 戻り先 {back} が本当の開始 {truth} より後ろ。取りこぼす",
+            c.name()
+        );
+        eprintln!(
+            "{:16} 検知 {hit:4} 戻り先 {back:4} 本当の開始 {truth:4} (手前に {} コマ余裕)",
+            c.name(),
+            truth - back
+        );
+    }
+}
+
+/// 間引いて探索し、見つけた位置から収集しても、解析結果が変わらない。
+///
+/// 探索が前半を捨てるので、捨てた範囲に調合が含まれていれば結果が変わる。
+/// 全コマ処理したときの記録と突き合わせて、変わっていないことを見る
+#[test]
+fn skipping_frames_does_not_change_the_analysis() {
+    for c in load_all() {
+        let e = &c.expected;
+        let rows: Vec<FrameReading> = e.rows.iter().map(Row::as_reading).collect();
+
+        let (_, t) = combo_core::find_craft_start(&rows)
+            .unwrap_or_else(|| panic!("{}: 調合を見つけられなかった", c.name()));
+
+        // 収集フェーズは戻り先から末尾まで全コマ溜める
+        let from = rows
+            .iter()
+            .position(|r| r.t >= t)
+            .unwrap_or_else(|| panic!("{}: 戻り先 {t} が見つからない", c.name()));
+        let collected: Vec<FrameReading> = rows[from..].to_vec();
+
+        let analysis: Analysis = cross_check(&collected);
+        assert_eq!(
+            analysis.cumulative,
+            e.cumulative,
+            "{}: 間引いたら累計が変わった (戻り先 {from} コマ目)",
+            c.name()
+        );
+    }
+}
+
 /// 速度の目安。`cargo test --release -- --ignored --nocapture` で走る
 #[test]
 #[ignore = "計測用"]

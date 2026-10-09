@@ -70,12 +70,14 @@ function CopyButton({ text }: { text: string }) {
 type Props = {
   analysis: Analysis;
   frames: number;
+  /** うち、調合を探すために読んだコマ */
+  scanned: number;
   elapsedMs: number;
   /** 完成品が上限に達して打ち切ったか */
   reachedCap: boolean;
 };
 
-export function AnalysisResult({ analysis, frames, elapsedMs, reachedCap }: Props) {
+export function AnalysisResult({ analysis, frames, scanned, elapsedMs, reachedCap }: Props) {
   const total = analysis.crafts.reduce((sum, c) => sum + c.count, 0);
   const cumulative = analysis.cumulative
     .map((v) => (v === undefined ? "??" : String(v).padStart(2, "0")))
@@ -83,7 +85,8 @@ export function AnalysisResult({ analysis, frames, elapsedMs, reachedCap }: Prop
   // 推測が入った回。折りたたみを開く価値があるかの目安にする
   const uncertain = analysis.crafts.filter((c) => isUncertain(c.resolution.type)).length;
   const detail =
-    `${frames} コマを ${(elapsedMs / 1000).toFixed(2)} 秒で読みました` +
+    `${frames} コマ (探索 ${scanned} + 収集 ${frames - scanned}) を ` +
+    `${(elapsedMs / 1000).toFixed(2)} 秒で読みました` +
     (reachedCap ? " ・ 完成品が上限に達したため途中で終了" : "");
 
   if (analysis.crafts.length === 0) {

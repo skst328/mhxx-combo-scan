@@ -121,6 +121,24 @@ impl Analysis {
     }
 }
 
+/// 1 コマ渡したあと、TS が次に何をすべきか
+#[derive(Tsify, Serialize, Deserialize, Clone, Copy, Debug, PartialEq)]
+#[serde(tag = "type", rename_all = "camelCase")]
+pub enum Next {
+    /// 次の `frames` コマは描画しなくてよい。0 なら毎コマ描画する
+    Skip { frames: u32 },
+    /// この時刻から開き直して、全コマ描画する
+    RewindTo { t: f64 },
+}
+
+/// `Session::pushFrame` の戻り値
+#[derive(Tsify, Serialize, Deserialize, Clone, Copy, Debug, PartialEq)]
+#[serde(rename_all = "camelCase")]
+pub struct FrameOutcome {
+    pub reading: FrameReading,
+    pub next: Next,
+}
+
 /// `FrameSearcher::create` に渡す累計の並び。tsify では `(number | undefined)[]`
 #[derive(Tsify, Serialize, Deserialize, Clone, Debug)]
 pub struct Cumulative(pub Vec<Option<u8>>);

@@ -380,6 +380,7 @@ function App() {
           <AnalysisResult
             analysis={result.analyze.analysis}
             frames={result.analyze.frames}
+            scanned={result.analyze.scanned}
             elapsedMs={result.analyze.elapsedMs}
             reachedCap={result.analyze.reachedCap}
           />

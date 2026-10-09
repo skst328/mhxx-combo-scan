@@ -19,6 +19,8 @@ export type AnalyzeResponse =
       type: "done";
       analysis: Analysis;
       frames: number;
+      /** 調合を探している間に読んだコマ */
+      scanned: number;
       reachedCap: boolean;
       elapsedMs: number;
       shots: FrameShot[];
@@ -77,6 +79,8 @@ async function analyze({ file, start = 0, end }: AnalyzeRequest) {
     const duration = (end ?? (await input.computeDuration())) - start;
     session = new Session();
     let frames = 0;
+    // 調合を探している間に読んだコマ。見つからなければ全部が探索になる
+    let scanned: number | null = null;
     let reachedCap = false;
     let lastNotified = 0;
     const shots: FrameShot[] = [];
@@ -94,58 +98,83 @@ async function analyze({ file, start = 0, end }: AnalyzeRequest) {
       }
     };
 
-    for await (const sample of new VideoSampleSink(track).samples(start, end)) {
-      try {
-        // 元画像を原寸のまま、ROI の左上がキャンバスの原点に来る位置に置く。
-        // はみ出した部分は切り捨てられるので、結果は ROI の切り出しと同じになる。
-        // 「元画像のどこを写すか」を渡す呼び方は、環境によって無視されて
-        // 画面全体が縮小描画されることがあるため使わない
-        sample.draw(context, -roi.x, -roi.y);
-        const { data } = context.getImageData(0, 0, roi.width, roi.height);
-        // Uint8ClampedArray を同じメモリを指す Uint8Array として渡す (コピーしない)
-        const bytes = new Uint8Array(data.buffer, data.byteOffset, data.byteLength);
-        const reading = session.pushFrame(sample.timestamp, bytes);
-        frames++;
+    // 調合を探している間は描画を間引く。何コマ飛ばすかは wasm が指示する。
+    // 見つかったら、取りこぼさない位置まで戻って開き直し、そこからは全コマ描く
+    let from = start;
+    let skip = 0;
 
-        // 完成品の個数が変わったコマだけ画像を残す。PNG にしておけば 1 枚数十 KB で済む。
-        // 素材がどちらも読めない行はクロスチェックが捨てるので、ここでも撮らない
-        // (別のレシピにカーソルがある間のコマがこれにあたる)
-        const usable =
-          reading.crafting &&
-          (reading.material1 !== undefined || reading.material2 !== undefined);
-        if (usable && reading.product !== undefined && reading.product !== lastProduct) {
-          if (canCapture && shots.length < MAX_SHOTS) {
-            const image = await capture();
-            if (image) shots.push({ reading, image });
+    scan: for (;;) {
+      for await (const sample of new VideoSampleSink(track).samples(from, end)) {
+        try {
+          if (skip > 0) {
+            // 描画しないコマ。デコードは進んでいるが、読み取ってはいない
+            skip--;
+            continue;
           }
-          lastProduct = reading.product;
-        }
 
-        // 何も見つからなかったときのために、間隔をあけて数枚だけ控えておく
-        if (canCapture && probes.length < MAX_PROBES && (frames - 1) % PROBE_EVERY === 0) {
-          const image = await capture();
-          if (image) probes.push({ reading, image });
-        }
+          // 元画像を原寸のまま、ROI の左上がキャンバスの原点に来る位置に置く。
+          // はみ出した部分は切り捨てられるので、結果は ROI の切り出しと同じになる。
+          // 「元画像のどこを写すか」を渡す呼び方は、環境によって無視されて
+          // 画面全体が縮小描画されることがあるため使わない
+          sample.draw(context, -roi.x, -roi.y);
+          const { data } = context.getImageData(0, 0, roi.width, roi.height);
+          // Uint8ClampedArray を同じメモリを指す Uint8Array として渡す (コピーしない)
+          const bytes = new Uint8Array(data.buffer, data.byteOffset, data.byteLength);
+          const { reading, next } = session.pushFrame(sample.timestamp, bytes);
+          frames++;
 
-        const now = performance.now();
-        if (now - lastNotified >= PROGRESS_INTERVAL_MS) {
-          lastNotified = now;
-          // 分母は解析範囲の長さなので、分子も範囲の先頭からの経過にする
-          post({ type: "progress", frames, elapsed: sample.timestamp - start, duration });
+          if (next.type === "rewindTo") {
+            // ここまでが探索。戻って読み直すぶんは収集として数える
+            scanned = frames;
+            from = next.t;
+            continue scan;
+          }
+          skip = next.frames;
+
+          // 完成品の個数が変わったコマだけ画像を残す。PNG にしておけば 1 枚数十 KB で済む。
+          // 素材がどちらも読めない行はクロスチェックが捨てるので、ここでも撮らない
+          // (別のレシピにカーソルがある間のコマがこれにあたる)
+          const usable =
+            reading.crafting &&
+            (reading.material1 !== undefined || reading.material2 !== undefined);
+          if (usable && reading.product !== undefined && reading.product !== lastProduct) {
+            if (canCapture && shots.length < MAX_SHOTS) {
+              const image = await capture();
+              if (image) shots.push({ reading, image });
+            }
+            lastProduct = reading.product;
+          }
+
+          // 何も見つからなかったときのために、間隔をあけて数枚だけ控えておく
+          if (canCapture && probes.length < MAX_PROBES && (frames - 1) % PROBE_EVERY === 0) {
+            const image = await capture();
+            if (image) probes.push({ reading, image });
+          }
+
+          const now = performance.now();
+          if (now - lastNotified >= PROGRESS_INTERVAL_MS) {
+            lastNotified = now;
+            // 分母は解析範囲の長さなので、分子も範囲の先頭からの経過にする
+            post({ type: "progress", frames, elapsed: sample.timestamp - start, duration });
+          }
+          if (reading.done) {
+            reachedCap = true;
+            break scan;
+          }
+        } finally {
+          sample.close();
         }
-        if (reading.done) {
-          reachedCap = true;
-          break;
-        }
-      } finally {
-        sample.close();
       }
+      // 開き直さずに末尾まで来たら終わり
+      break;
     }
 
     post({
       type: "done",
       analysis: session.analyze(),
       frames,
+      // 見つからずに終わったなら、読んだコマは全部が探索だった
+      scanned: scanned ?? frames,
       reachedCap,
       elapsedMs: performance.now() - startedAt,
       shots,

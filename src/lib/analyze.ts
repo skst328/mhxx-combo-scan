@@ -16,6 +16,8 @@ export type AnalyzeResult = {
   analysis: Analysis;
   /** 読んだコマ数 */
   frames: number;
+  /** うち、調合を探すために読んだコマ数 */
+  scanned: number;
   /** 完成品が上限に達して打ち切ったか */
   reachedCap: boolean;
   elapsedMs: number;

@@ -6,6 +6,7 @@
 //! |---|---|---|
 //! | [`read`] | 1 コマの読み取り | そのコマだけ |
 //! | [`cross`] | 素材の減りと完成品の増えの突き合わせ | 並び全体 |
+//! | [`scan`] | 調合が始まる位置を間引いて探す | 直近の観測 |
 //! | [`rng`] / [`search`] | 生産数の並びから乱数位置を探す | — |
 //!
 //! 前提は「Switch 2 録画の 1280x720・30fps・時刻順に全コマが渡される」こと。
@@ -14,6 +15,7 @@
 mod cross;
 mod read;
 mod rng;
+mod scan;
 mod search;
 mod templates;
 pub mod types;
@@ -23,6 +25,7 @@ use wasm_bindgen::prelude::*;
 
 pub use cross::cross_check;
 pub use read::{ROI, read_frame, reached_cap};
+pub use scan::find_start as find_craft_start;
 pub use search::{Searcher, diagnose};
 use types::*;
 
@@ -32,6 +35,8 @@ pub struct Session {
     rows: Vec<FrameReading>,
     /// 上限未満の完成品を見たか。[`read::reached_cap`] に持ち回る
     seen_below_cap: bool,
+    /// 調合の開始を探している間だけ持つ。見つけたら None になり、収集に移る
+    scanner: Option<scan::Scanner>,
 }
 
 impl Default for Session {
@@ -44,7 +49,7 @@ impl Default for Session {
 impl Session {
     #[wasm_bindgen(constructor)]
     pub fn new() -> Self {
-        Self { rows: Vec::new(), seen_below_cap: false }
+        Self { rows: Vec::new(), seen_below_cap: false, scanner: Some(scan::Scanner::new()) }
     }
 
     /// 受け付けるコマの大きさ。TS はこれと違う動画を弾く
@@ -59,13 +64,25 @@ impl Session {
     }
 
     /// `rgba` は `roi()` の幅 x 高さ x 4 バイト。長さが違えば throw する。
-    /// 戻り値はそのコマだけを見た生の値で、前後のコマによる補正は入っていない
+    ///
+    /// 戻り値の `reading` はそのコマだけを見た生の値。`next` は TS への指示で、
+    /// 調合を探している間は間引きを指示し、見つけたら戻る先を返す。
+    /// 探している間のコマは溜めない (間引いているので並びが欠けている)
     #[wasm_bindgen(js_name = pushFrame)]
-    pub fn push_frame(&mut self, t: f64, rgba: &[u8]) -> Result<Ts<FrameReading>, JsError> {
+    pub fn push_frame(&mut self, t: f64, rgba: &[u8]) -> Result<Ts<FrameOutcome>, JsError> {
         let mut reading = read::read_frame(t, rgba).map_err(|e| JsError::new(&e))?;
+
+        if let Some(scanner) = self.scanner.as_mut() {
+            let next = scanner.observe(reading);
+            if matches!(next, Next::RewindTo { .. }) {
+                self.scanner = None;
+            }
+            return Ok(FrameOutcome { reading, next }.into_ts()?);
+        }
+
         reading.done = read::reached_cap(reading.product, &mut self.seen_below_cap);
         self.rows.push(reading);
-        Ok(reading.into_ts()?)
+        Ok(FrameOutcome { reading, next: Next::Skip { frames: 0 } }.into_ts()?)
     }
 
     /// 溜まったコマにクロスチェックをかける。途中で呼んでもよい
