@@ -25,6 +25,7 @@ combo-core/src/
   lib.rs        wasm との境界だけ (Session, FrameSearcher)
   types.rs      TS とやり取りする型。tsify が .d.ts を生成する
   read.rs       1 コマの読み取り。上限到達の判定だけ前のコマを見る
+  scan.rs       調合の位置を間引いて探す
   templates.rs  二値化済みの見本 (実体は build.rs が生成)
   cross.rs      素材の減りと完成品の増えの突き合わせ
   rng.rs        xorshift128 と jump
