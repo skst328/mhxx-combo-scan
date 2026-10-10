@@ -131,18 +131,22 @@ async function analyze({ file, start = 0, end }: AnalyzeRequest) {
           }
           skip = next.frames;
 
-          // 完成品の個数が変わったコマだけ画像を残す。PNG にしておけば 1 枚数十 KB で済む。
-          // 素材がどちらも読めない行はクロスチェックが捨てるので、ここでも撮らない
-          // (別のレシピにカーソルがある間のコマがこれにあたる)
-          const usable =
-            reading.crafting &&
-            (reading.material1 !== undefined || reading.material2 !== undefined);
-          if (usable && reading.product !== undefined && reading.product !== lastProduct) {
-            if (canCapture && shots.length < MAX_SHOTS) {
-              const image = await capture();
-              if (image) shots.push({ reading, image });
+          // 探索中のコマは間引いて読んでいるので、個数が変わった位置を指さない。
+          // 収集に移ってから数える
+          if (scanned !== null) {
+            // 完成品の個数が変わったコマだけ画像を残す。PNG にしておけば 1 枚数十 KB で済む。
+            // 素材がどちらも読めない行はクロスチェックが捨てるので、ここでも撮らない
+            // (別のレシピにカーソルがある間のコマがこれにあたる)
+            const usable =
+              reading.crafting &&
+              (reading.material1 !== undefined || reading.material2 !== undefined);
+            if (usable && reading.product !== undefined && reading.product !== lastProduct) {
+              if (canCapture && shots.length < MAX_SHOTS) {
+                const image = await capture();
+                if (image) shots.push({ reading, image });
+              }
+              lastProduct = reading.product;
             }
-            lastProduct = reading.product;
           }
 
           // 何も見つからなかったときのために、間隔をあけて数枚だけ控えておく

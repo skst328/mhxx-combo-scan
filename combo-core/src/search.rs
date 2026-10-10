@@ -124,7 +124,11 @@ impl Searcher {
                 k += 1;
             }
             if k == n {
-                hits.push(self.offset + self.consumed as i64 - (STRIDE * (n - 1)) as i64);
+                // ゲーム内のフレーム位置は 0 から始まる。下駄のぶん手前に回った一致は返さない
+                let frame = self.offset + self.consumed as i64 - (STRIDE * (n - 1)) as i64;
+                if frame >= 0 {
+                    hits.push(frame);
+                }
                 k = self.pi[n - 1];
             }
             self.kmp[self.r] = k;
@@ -496,6 +500,17 @@ mod tests {
         // ヒットを過ぎた位置から探すと見つからない
         let mut too_late = Searcher::new(&cumulative, START + 500).unwrap();
         assert!(!too_late.step(20_000).contains(&expected));
+    }
+
+    /// 下駄は並びが短いほど手前に寄る。0 より手前に出た一致は返さない
+    #[test]
+    fn never_reports_a_frame_before_zero() {
+        // 累計 5 個・開始 0 なら下駄は -22。乱数の数歩目で当たると負になる
+        let cumulative = cum(&[0, 4, 7, 10, 13]);
+        let mut searcher = Searcher::new(&cumulative, 0).unwrap();
+        let hits = searcher.step(1_000);
+        assert!(!hits.is_empty(), "差分 1 個なら当たるはず");
+        assert!(hits.iter().all(|&f| f >= 0), "負の位置が混ざっている: {hits:?}");
     }
 
     #[test]

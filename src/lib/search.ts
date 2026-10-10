@@ -10,12 +10,12 @@ const FRAMES_PER_DAY = 2_592_000;
 /** 入力欄の文字列を非負整数にする。空や不正なら null */
 export function parseFrames(text: string): number | null {
   const value = Number(text.replaceAll(",", "").trim());
-  if (!Number.isFinite(value) || value < 0) return null;
-  return Math.floor(value);
+  if (!Number.isInteger(value) || value < 0) return null;
+  return value;
 }
 
 export const DEFAULT_START = 0;
-export const DEFAULT_RANGE = 10 ** 8;
+export const DEFAULT_END = 10 ** 8;
 
 /** フレーム数をゲーム内の経過時間としてざっくり表す */
 export function approximateDuration(frames: number): string {

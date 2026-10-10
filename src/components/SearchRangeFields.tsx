@@ -4,23 +4,23 @@ import { approximateDuration, parseFrames } from "@/lib/search";
 
 type Props = {
   start: string;
-  range: string;
+  end: string;
   onStartChange: (value: string) => void;
-  onRangeChange: (value: string) => void;
+  onEndChange: (value: string) => void;
   disabled?: boolean;
 };
 
 /** 乱数を探す区間の指定 */
 export function SearchRangeFields({
   start,
-  range,
+  end,
   onStartChange,
-  onRangeChange,
+  onEndChange,
   disabled,
 }: Props) {
   const startFrame = parseFrames(start);
-  const rangeFrames = parseFrames(range);
-  const valid = startFrame !== null && rangeFrames !== null && rangeFrames > 0;
+  const endFrame = parseFrames(end);
+  const ordered = startFrame !== null && endFrame !== null && endFrame > startFrame;
 
   return (
     <div className="space-y-2">
@@ -37,21 +37,23 @@ export function SearchRangeFields({
           />
         </div>
         <div className="space-y-1.5">
-          <Label className="text-sm font-normal text-muted-foreground" htmlFor="frame-range">探索範囲</Label>
+          <Label className="text-sm font-normal text-muted-foreground" htmlFor="frame-end">終了フレーム</Label>
           <Input
-            id="frame-range"
+            id="frame-end"
             inputMode="numeric"
-            value={range}
+            value={end}
             disabled={disabled}
-            aria-invalid={rangeFrames === null || rangeFrames <= 0}
-            onChange={(e) => onRangeChange(e.target.value)}
+            aria-invalid={endFrame === null || !ordered}
+            onChange={(e) => onEndChange(e.target.value)}
           />
         </div>
       </div>
       <p className="text-sm text-muted-foreground">
-        {valid
-          ? `${startFrame.toLocaleString()} 〜 ${(startFrame + rangeFrames).toLocaleString()} を探します（${approximateDuration(rangeFrames)}ぶん）`
-          : "0 以上の整数を入力してください"}
+        {startFrame === null || endFrame === null
+          ? "0 以上の整数を入力してください"
+          : !ordered
+            ? "終了は開始より後にしてください"
+            : `${startFrame.toLocaleString()} 〜 ${endFrame.toLocaleString()} を探します（${approximateDuration(endFrame - startFrame)}ぶん）`}
       </p>
     </div>
   );

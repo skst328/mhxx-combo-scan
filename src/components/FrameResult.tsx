@@ -7,31 +7,63 @@ import { formatFrame, safeRange, type SearchOutcome } from "@/lib/search";
 /** 符号を必ず付ける。ずれは負にもなる */
 const signed = (n: number) => (n >= 0 ? `+${n}` : String(n));
 
+/** これを超える候補は初期表示では畳む */
+const COLLAPSE_OVER = 20;
+
 type Props = {
   outcome: SearchOutcome;
   /** 実際に探した範囲。偽陽性の判定に使う */
   range: number;
+  /** 読み取れた調合の回数 */
+  crafts: number;
 };
 
-export function FrameResult({ outcome, range }: Props) {
+export function FrameResult({ outcome, range, crafts }: Props) {
   const unreliable = range > safeRange(outcome.patternLength);
   const description =
     outcome.hits.length > 0
       ? outcome.totalHits === 1
         ? "一意に特定できました"
         : `${outcome.totalHits.toLocaleString()} 件の候補が見つかりました`
-      : outcome.diagnosis
-        ? null
-        : "この範囲では見つかりませんでした";
+      : null;
+
+  const hits = (
+    <ul className="space-y-1.5">
+      {outcome.hits.map((frame) => (
+        <li
+          key={frame}
+          className={cn(
+            "space-y-0.5 rounded-lg border p-3",
+            outcome.totalHits === 1 && "border-primary/40 bg-primary/5",
+          )}
+        >
+          {/* 区切り記号は入れない */}
+          <p className="font-mono text-3xl tabular-nums select-all">{frame}</p>
+          <p className="text-sm text-muted-foreground">ゲーム開始から {formatFrame(frame)} 相当</p>
+        </li>
+      ))}
+    </ul>
+  );
 
   return (
     <Card>
       <CardHeader>
         <CardTitle>調合開始時のフレーム位置</CardTitle>
-        {/* 診断が出るときは、下の Alert が状況を説明するので重ねない */}
+        {/* 見つからなかったときは、下の Alert が状況を説明するので重ねない */}
         {description && <CardDescription>{description}</CardDescription>}
       </CardHeader>
       <CardContent className="space-y-3">
+        {unreliable && outcome.totalHits > 0 && (
+          <Alert variant="destructive">
+            <AlertCircle />
+            <AlertTitle>偶然の一致が混ざっている可能性があります</AlertTitle>
+            <AlertDescription>
+              調合 {crafts} 回ぶんの並びでは、フレームを一意に絞れません。
+              乱数の探索範囲を狭めるか、調合回数を増やして撮り直してください
+            </AlertDescription>
+          </Alert>
+        )}
+
         {outcome.hits.length === 0 ? (
           outcome.diagnosis ? (
             <div className="space-y-3">
@@ -93,46 +125,27 @@ export function FrameResult({ outcome, range }: Props) {
               )}
             </div>
           ) : (
-            <p className="text-sm text-muted-foreground">
-              調合の途中で乱数がずれた可能性がありますが、位置は割り出せませんでした。
-              撮り直すことをおすすめします
-            </p>
+            <Alert variant="warning">
+              <AlertTriangle />
+              <AlertTitle>この乱数の探索範囲では見つかりませんでした</AlertTitle>
+            </Alert>
           )
+        ) : outcome.hits.length > COLLAPSE_OVER ? (
+          <details>
+            <summary className="cursor-pointer text-sm text-muted-foreground select-none">
+              候補を表示（{outcome.hits.length} 件）
+            </summary>
+            <div className="mt-3">{hits}</div>
+          </details>
         ) : (
-          <ul className="space-y-1.5">
-            {outcome.hits.map((frame) => (
-              <li
-                key={frame}
-                className={cn(
-                  "space-y-0.5 rounded-lg border p-3",
-                  outcome.totalHits === 1 && "border-primary/40 bg-primary/5",
-                )}
-              >
-                {/* 区切り記号は入れない */}
-                <p className="font-mono text-3xl tabular-nums select-all">{frame}</p>
-                <p className="text-sm text-muted-foreground">
-                  ゲーム開始から {formatFrame(frame)} 相当
-                </p>
-              </li>
-            ))}
-          </ul>
+          hits
         )}
 
         {outcome.totalHits > outcome.hits.length && (
           <p className="text-sm text-muted-foreground">
-            全 {outcome.totalHits.toLocaleString()} 件のうち {outcome.hits.length} 件を表示しています
+            全 {outcome.totalHits.toLocaleString()} 件のうち、先頭 {outcome.hits.length}{" "}
+            件だけ残しています
           </p>
-        )}
-
-        {unreliable && outcome.totalHits > 0 && (
-          <Alert variant="destructive">
-            <AlertCircle />
-            <AlertTitle>偶然の一致が混ざっている可能性があります</AlertTitle>
-            <AlertDescription>
-              調合 {outcome.patternLength + 1} 回ぶんの並びでは、この範囲を一意に絞れません。
-              範囲を狭めるか、調合回数を増やして撮り直してください
-            </AlertDescription>
-          </Alert>
         )}
 
         <p className="text-sm text-muted-foreground">

@@ -26,7 +26,7 @@ import { analyzeVideo, loadCore, type AnalyzeResult, type Progress } from "@/lib
 import { detectCapabilities, hasFinePointer } from "@/lib/capabilities";
 import { useWindowFileDrop } from "@/lib/drop";
 import {
-  DEFAULT_RANGE,
+  DEFAULT_END,
   DEFAULT_START,
   parseFrames,
   searchFrames,
@@ -69,7 +69,7 @@ function App() {
   const [fromText, setFromText] = useState("");
   const [toText, setToText] = useState("");
   const [startText, setStartText] = useState(String(DEFAULT_START));
-  const [rangeText, setRangeText] = useState(String(DEFAULT_RANGE));
+  const [endText, setEndText] = useState(String(DEFAULT_END));
   const [probing, setProbing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [phase, setPhase] = useState<Phase | null>(null);
@@ -84,14 +84,14 @@ function App() {
   const running = phase !== null;
   const busy = !source || !capabilities.ready || probing || running;
   const start = parseFrames(startText);
-  const range = parseFrames(rangeText);
+  const end = parseFrames(endText);
   const from = parseSeconds(fromText);
   const to = parseSeconds(toText);
   const timeOk =
     from.ok &&
     to.ok &&
     (from.value === undefined || to.value === undefined || to.value > from.value);
-  const canRun = source !== null && start !== null && range !== null && range > 0 && timeOk;
+  const canRun = source !== null && start !== null && end !== null && end > start && timeOk;
 
   // 解析は時間がかかるので、終わる頃には結果が画面の外にあることが多い。
   // 読み上げの位置も移したいので、スクロールに加えてフォーカスも移す
@@ -149,7 +149,9 @@ function App() {
 
   /** 動画の解析と乱数の検索を続けて走らせる */
   const run = async () => {
-    if (!selection || start === null || range === null || !from.ok || !to.ok) return;
+    if (!selection || start === null || end === null || !from.ok || !to.ok) return;
+    // 検索は開始から N 歩進める形なので、入力の終了位置を本数に直す
+    const total = end - start;
     const controller = new AbortController();
     abort.current = controller;
     setError(null);
@@ -165,14 +167,14 @@ function App() {
         signal: controller.signal,
       });
       // 先に明細を出しておき、検索の結果は後から差し込む
-      setResult({ analyze: analyzed, range, search: null, searchError: null });
+      setResult({ analyze: analyzed, range: total, search: null, searchError: null });
       if (analyzed.analysis.crafts.length === 0) return;
 
-      setPhase({ kind: "search", progress: { consumed: 0, total: range } });
+      setPhase({ kind: "search", progress: { consumed: 0, total } });
       try {
         const found = await searchFrames(analyzed.analysis.cumulative, {
           start,
-          total: range,
+          total,
           onProgress: (progress) => setPhase({ kind: "search", progress }),
           signal: controller.signal,
         });
@@ -314,9 +316,9 @@ function App() {
                   <h3>乱数の探索範囲</h3>
                   <SearchRangeFields
                     start={startText}
-                    range={rangeText}
+                    end={endText}
                     onStartChange={setStartText}
-                    onRangeChange={setRangeText}
+                    onEndChange={setEndText}
                     disabled={running}
                   />
                 </section>
@@ -364,7 +366,13 @@ function App() {
           justFound && "ring-2",
         )}
       >
-        {result?.search && <FrameResult outcome={result.search} range={result.range} />}
+        {result?.search && (
+          <FrameResult
+            outcome={result.search}
+            range={result.range}
+            crafts={result.analyze.analysis.crafts.reduce((sum, c) => sum + c.count, 0)}
+          />
+        )}
       </div>
 
       {result?.searchError && (
