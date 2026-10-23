@@ -1,5 +1,7 @@
 import init, { type Analysis } from "../../combo-core/pkg/combo_core.js";
+import { createWorker } from "@/lib/worker";
 import type { AnalyzeRequest, AnalyzeResponse, FrameShot } from "@/workers/analyze.worker";
+import workerUrl from "@/workers/analyze.worker.ts?worker&url";
 
 export type { FrameShot } from "@/workers/analyze.worker";
 
@@ -51,9 +53,7 @@ export function analyzeVideo(
   const { start, end, onProgress, signal } = options;
 
   return new Promise((resolve, reject) => {
-    const worker = new Worker(new URL("../workers/analyze.worker.ts", import.meta.url), {
-      type: "module",
-    });
+    const worker = createWorker(workerUrl);
 
     const stop = () => {
       worker.terminate();

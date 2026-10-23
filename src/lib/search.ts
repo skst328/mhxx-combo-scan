@@ -1,5 +1,7 @@
 import type { Diagnosis } from "../../combo-core/pkg/combo_core.js";
+import { createWorker } from "@/lib/worker";
 import type { SearchRequest, SearchResponse } from "@/workers/search.worker";
+import workerUrl from "@/workers/search.worker.ts?worker&url";
 
 export type { Diagnosis, Drift } from "../../combo-core/pkg/combo_core.js";
 
@@ -96,9 +98,7 @@ export function searchFrames(
   const { start = 0, total, onProgress, onStarted, signal } = options;
 
   return new Promise((resolve, reject) => {
-    const worker = new Worker(new URL("../workers/search.worker.ts", import.meta.url), {
-      type: "module",
-    });
+    const worker = createWorker(workerUrl);
     let patternLength = 0;
 
     const stop = () => {
