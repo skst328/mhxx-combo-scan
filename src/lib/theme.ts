@@ -2,8 +2,11 @@ import { useCallback, useEffect, useState } from "react";
 
 export type Theme = "system" | "light" | "dark";
 
-/** index.html の先読みスクリプトと同じキーを使う */
-const STORAGE_KEY = "theme";
+/**
+ * index.html の先読みスクリプトと同じキーを使う。GitHub Pages では同じユーザーのツールどうしが
+ * 1 つのオリジン (localStorage) を共有するので、ツールの名前を付けて mhxx-renkin-reader などとぶつからないようにする
+ */
+const STORAGE_KEY = "mhxx-combo-scan:theme";
 
 const DARK_QUERY = "(prefers-color-scheme: dark)";
 

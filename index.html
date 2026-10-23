@@ -14,7 +14,7 @@
       // 最初の描画前にテーマを当てて、明るい画面が一瞬見えるのを防ぐ。
       // キーと判定は src/lib/theme.ts と揃えること
       try {
-        var stored = localStorage.getItem("theme") || "system";
+        var stored = localStorage.getItem("mhxx-combo-scan:theme") || "system";
         var dark =
           stored === "dark" ||
           (stored === "system" && matchMedia("(prefers-color-scheme: dark)").matches);
