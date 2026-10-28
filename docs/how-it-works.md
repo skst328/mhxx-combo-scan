@@ -16,7 +16,7 @@ ROI の RGBA (321x221)
   │  ③ 素材の減りと完成品の増えを突き合わせる  combo-core/src/cross.rs
   ▼
 累計の並び  00 04 07 09 12 …
-  │  ④ 乱数列から同じ並びを探す            combo-core/src/search.rs
+  │  ④ 乱数列から同じ並びを探す            mhxx-rand (combo.rs)
   ▼
 調合開始時のフレーム位置
 ```
@@ -321,11 +321,11 @@ MHXX の乱数は xorshift128 で、**1 コマ（1/30 秒）ごとに 1 回進�
 | `SOURCE` | 1280x720 | `read.rs` | 受け付けるコマの大きさ |
 | `CAP` | 99 | `read.rs` | 所持上限 |
 | `YIELD_MIN` / `MAX` | 2 / 4 | `cross.rs` | 1 回の生産数の範囲 |
-| `STRIDE` | 5 | `search.rs` | 調合 1 回で乱数が進む数 |
-| `WINDOW` | 12 | `search.rs` | 診断で位置を定めるのに使う窓の長さ |
-| `MIN_VOTES` | 2 | `search.rs` | 候補として採るのに必要な、同じ位置を指した窓の数 |
-| `MAX_STEP_DRIFT` | ±2 | `search.rs` | 1 箇所で許すずれ幅 |
-| `MAX_TOTAL_DRIFT` | ±5 | `search.rs` | ずれの合計の上限 |
+| `STRIDE` | 5 | mhxx-rand の `combo.rs` | 調合 1 回で乱数が進む数 |
+| `WINDOW` | 12 | mhxx-rand の `combo.rs` | 診断で位置を定めるのに使う窓の長さ |
+| `MIN_VOTES` | 2 | mhxx-rand の `combo.rs` | 候補として採るのに必要な、同じ位置を指した窓の数 |
+| `MAX_STEP_DRIFT` | ±2 | mhxx-rand の `combo.rs` | 1 箇所で許すずれ幅 |
+| `MAX_TOTAL_DRIFT` | ±5 | mhxx-rand の `combo.rs` | ずれの合計の上限 |
 
 `YIELD_MIN` / `YIELD_MAX` を変えると、`tests/cases/` の期待値も作り直しになる。
 

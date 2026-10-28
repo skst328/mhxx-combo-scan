@@ -10,6 +10,8 @@ description = "MHXX の調合動画から乱数位置を特定する解析エン
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
+# 乱数の検索 (生産数の並びから乱数位置を探す)
+mhxx-rand = { git = "https://github.com/skst328/mhxx-rand", tag = "v0.2.0" }
 wasm-bindgen = "0.2.128"
 serde = { version = "1.0.229", features = ["derive"] }
 serde-wasm-bindgen = "0.6.5"

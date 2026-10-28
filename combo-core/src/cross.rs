@@ -116,12 +116,13 @@ fn segments(rows: &[FrameReading]) -> Vec<Seg> {
     for r in rows.iter().filter(|r| r.crafting) {
         // 1 回の調合で素材が増えることはない。2 つの欄が揃って増えているなら
         // 別の調合が始まったとみなして数え直す。片方だけなら読み間違い
-        if let (Some(a), Some(b)) = (r.material1, r.material2) {
-            if prev1.is_some_and(|p| a > p) && prev2.is_some_and(|p| b > p) {
-                segs.clear();
-                materials.restart();
-                prev_m = None;
-            }
+        if let (Some(a), Some(b)) = (r.material1, r.material2)
+            && prev1.is_some_and(|p| a > p)
+            && prev2.is_some_and(|p| b > p)
+        {
+            segs.clear();
+            materials.restart();
+            prev_m = None;
         }
         let Some(m) = materials.value(r.material1, r.material2, prev_m) else {
             continue;

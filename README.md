@@ -138,7 +138,7 @@ MIT License の対象外です（著作権は株式会社カプコンに帰属�
 | [mediabunny](https://mediabunny.dev/) | **MPL-2.0** | mp4 の読み出し |
 | [Geist](https://vercel.com/font) | **OFL-1.1** | フォント |
 | [wasm-bindgen](https://github.com/wasm-bindgen/wasm-bindgen) / serde / [tsify](https://github.com/madonoharu/tsify) ほか | MIT または Apache-2.0 | Rust から WebAssembly への橋渡し |
-| [apmnnn/mhxx-rng](https://github.com/apmnnn/mhxx-rng) | MIT | 乱数の解析アルゴリズム |
+| [mhxx-rand](https://github.com/skst328/mhxx-rand) | MIT | 乱数の解析アルゴリズム |
 
 **mediabunny** は Mozilla Public License 2.0 です。ソースコードは
 <https://github.com/Vanilagy/mediabunny> から入手できます。このアプリでは改変せずに使用しています。
@@ -146,6 +146,7 @@ MIT License の対象外です（著作権は株式会社カプコンに帰属�
 **Geist** は SIL Open Font License 1.1 です。ライセンス全文は
 <https://github.com/vercel/geist-font> に含まれています。
 
-**乱数の解析アルゴリズム**（`combo-core/src/rng.rs`、`combo-core/src/search.rs`）は
-apmnnn 氏の mhxx-rng からの移植です。
-MIT ライセンスの全文は各ファイルの冒頭に記載しています。
+**乱数の解析アルゴリズム** は mhxx-rand を使っています。mhxx-rand は
+apmnnn 氏の [mhxx-rng](https://github.com/apmnnn/mhxx-rng)（MIT）の移植で、
+mhxx-rng の MIT ライセンスの全文は mhxx-rand の `rand-core/src/rng.rs` の冒頭に
+記載されています。

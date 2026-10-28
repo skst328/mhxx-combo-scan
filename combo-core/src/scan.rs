@@ -70,12 +70,12 @@ impl Scanner {
 
     /// 1 回ぶんの観測を受け取り、次に何をすべきかを返す
     pub fn observe(&mut self, reading: FrameReading) -> Next {
-        if let Some(prev) = self.recent.last() {
-            if advanced(prev, &reading) {
-                // 比較の前側から 2 つ前へ。それより手前は「動いていない」と確認済み
-                let target = self.recent.first().expect("last があるので空ではない");
-                return Next::RewindTo { t: target.t };
-            }
+        if let Some(prev) = self.recent.last()
+            && advanced(prev, &reading)
+        {
+            // 比較の前側から 2 つ前へ。それより手前は「動いていない」と確認済み
+            let target = self.recent.first().expect("last があるので空ではない");
+            return Next::RewindTo { t: target.t };
         }
         self.recent.push(reading);
         if self.recent.len() > KEEP {

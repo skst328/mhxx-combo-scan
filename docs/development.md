@@ -28,8 +28,7 @@ combo-core/src/
   scan.rs       調合の位置を間引いて探す
   templates.rs  二値化済みの見本 (実体は build.rs が生成)
   cross.rs      素材の減りと完成品の増えの突き合わせ
-  rng.rs        xorshift128 と jump
-  search.rs     KMP による逐次検索と、ずれの診断
+  search.rs     乱数位置の検索とずれの診断の受け渡し (中身は mhxx-rand の search_combo と diagnose_combo)
 ```
 
 ## ビルド
