@@ -10,11 +10,19 @@ const signed = (n: number) => (n >= 0 ? `+${n}` : String(n));
 /** これを超える候補は初期表示では畳む */
 const COLLAPSE_OVER = 20;
 
+/**
+ * ずれがこれ以上あれば、偶然一致した偽の位置の疑いが強い。ずれの位置と量を選べるぶん、
+ * 診断は通常の検索より偶然一致しやすく、ずれが多いほど起きやすい。連続調合が途切れた並びで
+ * 試すと、遠くの偽の位置を出したものはどれもずれ 3 か所以上だった
+ */
+const MANY_DRIFTS = 3;
+
 type Props = {
   outcome: SearchOutcome;
 };
 
 export function FrameResult({ outcome }: Props) {
+  const manyDrifts = (outcome.diagnosis?.drifts.length ?? 0) >= MANY_DRIFTS;
   const description =
     outcome.hits.length > 0
       ? outcome.totalHits === 1
@@ -72,6 +80,11 @@ export function FrameResult({ outcome }: Props) {
                     残りはすべて一致しているので、補正は要りません。
                   </AlertDescription>
                 </Alert>
+              ) : manyDrifts ? (
+                <Alert variant="destructive">
+                  <AlertCircle />
+                  <AlertTitle>ずれが多く、結果が正しくない可能性が高いです</AlertTitle>
+                </Alert>
               ) : (
                 <Alert variant="warning">
                   <AlertTriangle />
@@ -97,19 +110,23 @@ export function FrameResult({ outcome }: Props) {
 
               {outcome.diagnosis.drifts.length > 0 && (
                 <div className="space-y-1 text-sm">
-                  <p>
-                    {outcome.diagnosis.totalDrift === 0 ? (
-                      "ずれを検出しましたが打ち消し合っているので、上の値のままで大丈夫です。"
-                    ) : (
-                      <>
-                        括弧は検出したずれの合計です。これを足した{" "}
-                        <strong className="font-mono">
-                          {outcome.diagnosis.frame + outcome.diagnosis.totalDrift}
-                        </strong>{" "}
-                        が正しいかもしれません。
-                      </>
-                    )}
-                  </p>
+                  {/* ずれが多いときは、値を信じてよいと読める案内は出さない
+                      (上の注意と食い違うので) */}
+                  {!manyDrifts && (
+                    <p>
+                      {outcome.diagnosis.totalDrift === 0 ? (
+                        "ずれを検出しましたが打ち消し合っているので、上の値のままで大丈夫です。"
+                      ) : (
+                        <>
+                          括弧は検出したずれの合計です。これを足した{" "}
+                          <strong className="font-mono">
+                            {outcome.diagnosis.frame + outcome.diagnosis.totalDrift}
+                          </strong>{" "}
+                          が正しいかもしれません。
+                        </>
+                      )}
+                    </p>
+                  )}
                   <ul className="list-inside list-disc text-muted-foreground">
                     {outcome.diagnosis.drifts.map((d) => (
                       <li key={d.craft}>
