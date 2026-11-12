@@ -54,12 +54,6 @@ impl Searcher {
     pub fn consumed(&self) -> u64 {
         self.consumed
     }
-
-    /// 照合に使う差分の個数。生産数 1 個あたり 1.5 bit なので、範囲 N を探すときの
-    /// 偽陽性の期待値は N / 2^(1.5 * これ) になる
-    pub fn pattern_len(&self) -> usize {
-        self.query.pattern_len()
-    }
 }
 
 /// 通常の検索で見つからないとき、途中で乱数の進み方がずれた可能性を調べる。
@@ -154,7 +148,6 @@ mod tests {
         let want = reported(4_000, &cumulative);
         let mut s = Searcher::new(&cumulative, 0).unwrap();
         assert!(s.step(20_000).contains(&want));
-        assert_eq!(s.pattern_len(), 12);
         // 報告値の直後から探すと見つからない
         let mut late = Searcher::new(&cumulative, want as u64 + 1).unwrap();
         assert!(!late.step(20_000).contains(&want));

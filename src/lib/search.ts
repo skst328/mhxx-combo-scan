@@ -35,7 +35,6 @@ export type SearchOutcome = {
   hits: number[];
   /** 見つかった総数。hits は上限で打ち切られていることがある */
   totalHits: number;
-  patternLength: number;
   elapsedMs: number;
   /** 見つからなかったとき、途中で乱数がずれていれば内訳が入る */
   diagnosis?: Diagnosis;
@@ -77,29 +76,19 @@ export function formatFrame(frame: number): string {
   return `${d}日 ${h}時間 ${m}分 ${s}秒 ${f}フレーム`;
 }
 
-/**
- * 偽陽性が期待値 1 件を下回る範囲。生産数 1 個あたり 1.5 bit しかないので、
- * 並びが短いと広く探すほど偶然の一致が増える
- */
-export function safeRange(patternLength: number): number {
-  return 2 ** (1.5 * patternLength);
-}
-
 export function searchFrames(
   cumulative: (number | undefined)[],
   options: {
     start?: number;
     total: number;
     onProgress?: (progress: SearchProgress) => void;
-    onStarted?: (patternLength: number) => void;
     signal?: AbortSignal;
   },
 ): Promise<SearchOutcome> {
-  const { start = 0, total, onProgress, onStarted, signal } = options;
+  const { start = 0, total, onProgress, signal } = options;
 
   return new Promise((resolve, reject) => {
     const worker = createWorker(workerUrl);
-    let patternLength = 0;
 
     const stop = () => {
       worker.terminate();
@@ -114,16 +103,12 @@ export function searchFrames(
     worker.onmessage = (event: MessageEvent<SearchResponse>) => {
       const message = event.data;
       switch (message.type) {
-        case "started":
-          patternLength = message.patternLength;
-          onStarted?.(patternLength);
-          break;
         case "progress":
           onProgress?.({ consumed: message.consumed, total });
           break;
         case "done":
           stop();
-          resolve({ ...message, patternLength });
+          resolve(message);
           break;
         case "error":
           stop();

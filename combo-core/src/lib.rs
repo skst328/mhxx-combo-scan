@@ -143,11 +143,4 @@ impl FrameSearcher {
     pub fn consumed(&self) -> f64 {
         self.inner.consumed() as f64
     }
-
-    /// 照合に使う差分の個数。範囲 N を探すときの偽陽性の期待値は
-    /// N / 2^(1.5 * これ) なので、探してよい範囲の目安になる
-    #[wasm_bindgen(getter, js_name = patternLength)]
-    pub fn pattern_length(&self) -> usize {
-        self.inner.pattern_len()
-    }
 }

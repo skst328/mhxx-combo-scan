@@ -33,6 +33,9 @@ const MAT_SLOTS: [[Rect; 2]; 2] = [
     [Rect::new(802, 97, 15, 24), Rect::new(818, 97, 15, 24)],
     [Rect::new(802, 165, 15, 24), Rect::new(818, 165, 15, 24)],
 ];
+/// 素材が一桁のときの数字スロット。素材は一桁になると、2 桁ぶんの真ん中に出る
+/// (完成品のように 1 の位に寄らない)
+const MAT_SINGLE: [Rect; 2] = [Rect::new(810, 97, 15, 24), Rect::new(810, 165, 15, 24)];
 
 /// TS が切り出す矩形。上記すべての枠を周囲 1px ごと含む外接矩形。
 ///
@@ -126,8 +129,15 @@ fn best_match(p: &Patch, w: usize, h: usize, tpls: &[&Template]) -> (Option<usiz
 
 /// [10 の位, 1 の位] のスロットから数値を読む。読めなければ None
 fn read_number(rgba: &[u8], slots: &[Rect; 2]) -> Option<u8> {
+    read_digits(rgba, slots).map(|(n, _)| n)
+}
+
+/// [`read_number`] の中身。スロットは [10 の位, 1 の位] か [1 の位] で、
+/// 数値と、読んだ桁の不一致率のうち最も悪いものを返す
+fn read_digits(rgba: &[u8], slots: &[Rect]) -> Option<(u8, f64)> {
     let digits: Vec<&Template> = DIGITS.iter().collect();
-    let mut chars = [None; 2];
+    let mut chars = vec![None; slots.len()];
+    let mut worst = 0.0f64;
     for (i, rect) in slots.iter().enumerate() {
         let (w, h) = (rect.width as usize, rect.height as usize);
         let p = Patch::new(rgba, *rect);
@@ -141,9 +151,22 @@ fn read_number(rgba: &[u8], slots: &[Rect; 2]) -> Option<u8> {
             return None;
         }
         chars[i] = n.map(|v| v as u8);
+        worst = worst.max(d);
     }
-    // 1 の位が空白なら数値として成立しない
-    Some(chars[1]? + chars[0].unwrap_or(0) * 10)
+    // 1 の位 (最後のスロット) が空白なら数値として成立しない
+    let ones = (*chars.last()?)?;
+    let tens = if chars.len() == 2 { chars[0].unwrap_or(0) } else { 0 };
+    Some((tens * 10 + ones, worst))
+}
+
+/// 素材の数を読む。2 桁の読み方と、一桁のとき (真ん中に 1 文字) の読み方の両方で読み、
+/// 両方読めたら見本との一致がよいほうを採る (一桁の数字は 2 桁のスロットに半分ずつかかるので、
+/// たいてい 2 桁の読み方では読めない)
+fn read_material(rgba: &[u8], slots: &[Rect; 2], single: Rect) -> Option<u8> {
+    match (read_digits(rgba, slots), read_digits(rgba, &[single])) {
+        (Some(two), Some(one)) => Some(if one.1 < two.1 { one.0 } else { two.0 }),
+        (two, one) => two.or(one).map(|(n, _)| n),
+    }
 }
 
 /// 「調合素材」の見出しと「/」が両方あるときだけ調合画面とみなす
@@ -175,8 +198,8 @@ pub fn read_frame(t: f64, rgba: &[u8]) -> Result<FrameReading, String> {
     Ok(FrameReading {
         t,
         crafting: true,
-        material1: read_number(rgba, &MAT_SLOTS[0]),
-        material2: read_number(rgba, &MAT_SLOTS[1]),
+        material1: read_material(rgba, &MAT_SLOTS[0], MAT_SINGLE[0]),
+        material2: read_material(rgba, &MAT_SLOTS[1], MAT_SINGLE[1]),
         product,
         // 上限に達したかは 1 コマでは決まらない。[`reached_cap`] で決める
         done: false,
@@ -224,6 +247,7 @@ mod tests {
         let mut rects = vec![HEADER_RECT, SLASH_RECT];
         rects.extend(PROD_SLOTS);
         rects.extend(MAT_SLOTS.iter().flatten().copied());
+        rects.extend(MAT_SINGLE);
 
         let left = rects.iter().map(|r| r.x - 1).min().unwrap();
         let top = rects.iter().map(|r| r.y - 1).min().unwrap();

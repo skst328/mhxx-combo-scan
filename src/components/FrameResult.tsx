@@ -2,7 +2,7 @@ import { AlertCircle, AlertTriangle, Info } from "lucide-react";
 import { cn } from "cn";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { formatFrame, safeRange, type SearchOutcome } from "@/lib/search";
+import { formatFrame, type SearchOutcome } from "@/lib/search";
 
 /** 符号を必ず付ける。ずれは負にもなる */
 const signed = (n: number) => (n >= 0 ? `+${n}` : String(n));
@@ -12,14 +12,9 @@ const COLLAPSE_OVER = 20;
 
 type Props = {
   outcome: SearchOutcome;
-  /** 実際に探した範囲。偽陽性の判定に使う */
-  range: number;
-  /** 読み取れた調合の回数 */
-  crafts: number;
 };
 
-export function FrameResult({ outcome, range, crafts }: Props) {
-  const unreliable = range > safeRange(outcome.patternLength);
+export function FrameResult({ outcome }: Props) {
   const description =
     outcome.hits.length > 0
       ? outcome.totalHits === 1
@@ -53,12 +48,13 @@ export function FrameResult({ outcome, range, crafts }: Props) {
         {description && <CardDescription>{description}</CardDescription>}
       </CardHeader>
       <CardContent className="space-y-3">
-        {unreliable && outcome.totalHits > 0 && (
+        {/* 正しい位置は 1 つだけなので、候補が複数なら残りは偶然の一致。
+            1 件なら (読み違いがなければ) それが正しい位置 */}
+        {outcome.totalHits > 1 && (
           <Alert variant="destructive">
             <AlertCircle />
-            <AlertTitle>偶然の一致が混ざっている可能性があります</AlertTitle>
+            <AlertTitle>1 つに絞れませんでした</AlertTitle>
             <AlertDescription>
-              調合 {crafts} 回ぶんの並びでは、フレームを一意に絞れません。
               乱数の探索範囲を狭めるか、調合回数を増やして撮り直してください
             </AlertDescription>
           </Alert>

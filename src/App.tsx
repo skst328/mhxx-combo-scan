@@ -56,8 +56,6 @@ type Phase =
 
 type Result = {
   analyze: AnalyzeResult;
-  /** 探した範囲。偽陽性の判定に使う */
-  range: number;
   search: SearchOutcome | null;
   searchError: string | null;
 };
@@ -167,7 +165,7 @@ function App() {
         signal: controller.signal,
       });
       // 先に明細を出しておき、検索の結果は後から差し込む
-      setResult({ analyze: analyzed, range: total, search: null, searchError: null });
+      setResult({ analyze: analyzed, search: null, searchError: null });
       if (analyzed.analysis.crafts.length === 0) return;
 
       setPhase({ kind: "search", progress: { consumed: 0, total } });
@@ -367,11 +365,7 @@ function App() {
         )}
       >
         {result?.search && (
-          <FrameResult
-            outcome={result.search}
-            range={result.range}
-            crafts={result.analyze.analysis.crafts.reduce((sum, c) => sum + c.count, 0)}
-          />
+          <FrameResult outcome={result.search} />
         )}
       </div>
 

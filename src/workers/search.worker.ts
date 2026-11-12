@@ -19,7 +19,6 @@ export type SearchRequest = {
 };
 
 export type SearchResponse =
-  | { type: "started"; patternLength: number }
   | { type: "progress"; consumed: number }
   | {
       type: "done";
@@ -40,7 +39,6 @@ self.onmessage = async (event: MessageEvent<SearchRequest>) => {
     await init();
     // 並びが検索に使えない場合、ここで SearchError が throw される
     searcher = FrameSearcher.create(cumulative, start);
-    post({ type: "started", patternLength: searcher.patternLength });
 
     const startedAt = performance.now();
     const hits: number[] = [];

@@ -255,12 +255,13 @@ fn scan_finds_the_start_before_the_first_craft() {
         let e = &c.expected;
         let rows: Vec<FrameReading> = e.rows.iter().map(Row::as_reading).collect();
 
-        // 本当の開始 = 素材が初めて減ったコマ
+        // 本当の開始 = 素材が初めて調合 1 回ぶん (1〜2 個) 減ったコマ。レシピを切り替えた画面
+        // (前の調合の結果や、素材を持っていないレシピの 0) は大きく減って見えるので数えない
         let mut prev: Option<u8> = None;
         let mut truth = None;
         for (i, r) in rows.iter().enumerate() {
             if let Some(m) = r.material1 {
-                if prev.is_some_and(|p| m < p) {
+                if prev.is_some_and(|p| (1..=2).contains(&(p as i32 - m as i32))) {
                     truth = Some(i);
                     break;
                 }
